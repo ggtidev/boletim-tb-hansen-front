@@ -72,4 +72,5 @@ button>*{
 .button-link-gray{
     @include button-link;
     color: #1C1B1F;
+    opacity: 0.6;
 }
