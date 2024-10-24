@@ -3,7 +3,8 @@ $border-radius-value: 1.5rem;
 
 //Tags
 main{
-    padding: 2rem;
+    display: flex;
+    width: 100dvw;
 }
 
 header{
@@ -14,11 +15,35 @@ header{
     margin-bottom: 0.5rem
 }
 
-table{
-    background-color: #E5E5E5;
+th{
+    text-align: center;
+}
+
+td>*{
+    background-color: #FFFFFF;
+    padding: 0.6rem;
+    margin: 0 1rem;
+    border-radius: 0.8rem;
+}
+
+th, td{
+    padding: 1rem 0.2rem;
+    font-weight: 600;
+    border: none !important;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
 }
 
 //Classes
+.main-content{
+    padding: 1.5rem;
+    width: 100%;
+}
+
 .links{
     margin-left: 0.5rem;
 }
@@ -64,6 +89,83 @@ table{
     outline: none;
     border: none;
     font-size: large;
+}
+
+.table-container {
+    border-radius: $border-radius-value;
+    overflow: hidden; /* Isso garante que os cantos arredondados não sejam cortados */
+    position: relative;
+  
+    table {
+        background-color: #E5E5E5;
+        overflow-y: auto; /* Aplica o scroll vertical na tabela */
+        max-height: 100%; /* Faz com que a tabela respeite a altura do container */
+        width: 100%; /* Para garantir que ela se expanda corretamente */
+    }
+}
+  
+
+.mat-column-distritos{
+    align-items: center;
+    text-align: center;
+}
+
+.unit-element{
+    margin: 0 !important;
+    width: 100%;
+}
+
+.unit-text{
+    padding: 0 1rem;
+}
+
+.mat-column-boletim{
+    text-align: center;
+    margin: 0;
+
+    .tuberculose:hover{
+        background-color: purple;
+        color: white;
+    }
+
+    .hanseniase:hover{
+        background-color: red;
+        color: white;
+    }
+}
+
+.mat-column-status{
+    justify-items: center;
+}
+
+.button-display{
+    display: flex;
+    align-items: center;
+    padding: 0 !important;
+    overflow: hidden;
+    border: none;
+    cursor: pointer;
+}
+
+.status-text{
+    padding: 0.5rem 1.5rem;
+    font-weight: 600;
+}
+
+@mixin status{
+    width: 1.6rem;
+    height: 2.4rem;
+    max-height: 100%;
+}
+
+.open{
+    @include status;
+    background-color: #8FBF88;
+}
+
+.close{
+    @include status;
+    background-color: #FA4F46;
 }
 
 /*.units{

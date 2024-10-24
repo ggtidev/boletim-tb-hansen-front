@@ -1,0 +1,75 @@
+$border-radius-value: 0.6rem;
+
+aside{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    background-color: #F3F3F3;
+    width: 15dvw;
+    height: 100dvh;
+    padding: 1.5rem 1.2rem 3rem;
+    border-bottom-right-radius: 2rem;
+
+    .top-content>*{
+        margin-bottom: 3.5rem;
+    }
+}
+
+header{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    background-color: #D9D9D9;
+    padding: 0.7rem;
+    border-radius: $border-radius-value;
+    margin-bottom: 1rem;
+
+    .title{
+        font-size: x-large;
+        font-weight: 600;
+    }
+
+    .description{
+        font-size: small;
+    }
+}
+
+button{
+    display: flex;
+    padding: 0.7rem;
+    border-radius: $border-radius-value;
+    border: none;
+    background-color: #D9D9D9;
+    font-weight: 600;
+    cursor:pointer;
+}
+
+button>*{
+    margin-right: 1rem;
+}
+
+.links>*{
+    margin-bottom: 0.8rem;
+}
+
+@mixin button-link{
+    background-color: #D9D9D9;
+    padding: 0.7rem;
+    border-radius: $border-radius-value;
+    cursor: pointer;
+
+    *{
+        margin-right: 0.3rem;
+    }
+}
+
+.button-link-black{
+    @include button-link;
+    color: black;
+}
+
+.button-link-gray{
+    @include button-link;
+    color: #1C1B1F;
+}

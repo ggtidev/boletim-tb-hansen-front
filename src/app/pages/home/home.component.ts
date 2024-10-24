@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {MatTableModule} from '@angular/material/table'
 
+import { SidebarComponent } from '../../shared/sidebar/sidebar.component';
+
 export interface mockData{
   district: number,
   name: string
@@ -25,7 +27,7 @@ const DATA:mockData[] = [
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, MatTableModule],
+  imports: [CommonModule, MatTableModule, SidebarComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
