@@ -9,5 +9,5 @@ import { RouterLink } from '@angular/router';
   styleUrl: './auth.component.scss'
 })
 export class AuthComponent {
-
+  
 }
