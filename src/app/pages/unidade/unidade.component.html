@@ -1,69 +1,64 @@
-<main>
-    <app-sidebar></app-sidebar>
-  
-    <div class="main-content">
-      <header>
-        <svg width="11" height="12" viewBox="0 0 11 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M1.74994 9.87498H3.62494V6.74998C3.62494 6.5729 3.68483 6.42446 3.80463 6.30467C3.92442 6.18488 4.07286 6.12498 4.24994 6.12498H6.74994C6.92702 6.12498 7.07546 6.18488 7.19525 6.30467C7.31504 6.42446 7.37494 6.5729 7.37494 6.74998V9.87498H9.24994V4.24998L5.49994 1.43748L1.74994 4.24998V9.87498ZM0.499939 9.87498V4.24998C0.499939 4.05207 0.54421 3.86457 0.632751 3.68748C0.721293 3.5104 0.843689 3.36457 0.999939 3.24998L4.74994 0.437485C4.96869 0.270818 5.21869 0.187485 5.49994 0.187485C5.78119 0.187485 6.03119 0.270818 6.24994 0.437485L9.99994 3.24998C10.1562 3.36457 10.2786 3.5104 10.3671 3.68748C10.4557 3.86457 10.4999 4.05207 10.4999 4.24998V9.87498C10.4999 10.2187 10.3775 10.513 10.1328 10.7578C9.88796 11.0026 9.59369 11.125 9.24994 11.125H6.74994C6.57285 11.125 6.42442 11.0651 6.30463 10.9453C6.18483 10.8255 6.12494 10.6771 6.12494 10.5V7.37498H4.87494V10.5C4.87494 10.6771 4.81504 10.8255 4.69525 10.9453C4.57546 11.0651 4.42702 11.125 4.24994 11.125H1.74994C1.40619 11.125 1.11192 11.0026 0.867126 10.7578C0.622335 10.513 0.499939 10.2187 0.499939 9.87498Z" fill="#1C1B1F"/>
-        </svg>
-        <span class="links">Unidade</span>
-      </header>
-  
-      <section class="filter separate">
-        <span class="filter-title">FILTROS</span>
-        <form action="" method="post" class="filter-search-bar">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M5.91667 11.3333C4.40278 11.3333 3.12153 10.809 2.07292 9.76042C1.02431 8.71181 0.5 7.43056 0.5 5.91667C0.5 4.40278 1.02431 3.12153 2.07292 2.07292C3.12153 1.02431 4.40278 0.5 5.91667 0.5C7.43056 0.5 8.71181 1.02431 9.76042 2.07292C10.809 3.12153 11.3333 4.40278 11.3333 5.91667C11.3333 6.52778 11.2361 7.10417 11.0417 7.64583C10.8472 8.1875 10.5833 8.66667 10.25 9.08333L14.9167 13.75C15.0694 13.9028 15.1458 14.0972 15.1458 14.3333C15.1458 14.5694 15.0694 14.7639 14.9167 14.9167C14.7639 15.0694 14.5694 15.1458 14.3333 15.1458C14.0972 15.1458 13.9028 15.0694 13.75 14.9167L9.08333 10.25C8.66667 10.5833 8.1875 10.8472 7.64583 11.0417C7.10417 11.2361 6.52778 11.3333 5.91667 11.3333ZM5.91667 9.66667C6.95833 9.66667 7.84375 9.30208 8.57292 8.57292C9.30208 7.84375 9.66667 6.95833 9.66667 5.91667C9.66667 4.875 9.30208 3.98958 8.57292 3.26042C7.84375 2.53125 6.95833 2.16667 5.91667 2.16667C4.875 2.16667 3.98958 2.53125 3.26042 3.26042C2.53125 3.98958 2.16667 4.875 2.16667 5.91667C2.16667 6.95833 2.53125 7.84375 3.26042 8.57292C3.98958 9.30208 4.875 9.66667 5.91667 9.66667Z" fill="#1C1B1F"/>
-          </svg>
-          <input type="text" placeholder="Buscar..." class="filter-input-search" (input)="applyFilter($event)">
-        </form>
-      </section>
-  
-      <div class="table-container">
-        <table mat-table [dataSource]="dataSource">
-          <ng-container matColumnDef="distritos">
-            <th mat-header-cell *matHeaderCellDef>DISTRITOS</th>
-            <td mat-cell *matCellDef="let element">
-              <div>{{element.distrito}}</div>
-            </td>
-          </ng-container>
-  
-          <ng-container matColumnDef="unidades">
-            <th mat-header-cell *matHeaderCellDef>UNIDADES</th>
-            <td mat-cell *matCellDef="let element">
-              <div class="unit-element">
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="..." fill="#1C1B1F"/>
-                </svg>
-                <span class="unit-text">{{element.no_unidade_saude}}</span>
-              </div>
-            </td>
-          </ng-container>
-  
-          <ng-container matColumnDef="boletim">
-            <th mat-header-cell *matHeaderCellDef>BOLETIM</th>
-            <td mat-cell *matCellDef="let element">
-              <a href="" class="tuberculose">Tuberculose</a>
-              <a href="" class="hanseniase">Hanseníase</a>
-            </td>
-          </ng-container>
-  
-          <ng-container matColumnDef="status">
-            <th mat-header-cell *matHeaderCellDef>STATUS</th>
-            <td mat-cell *matCellDef="let element">
-              <button (click)="setIsOpen()" type="button" class="button-display">
-                <span class="status-text">{{ isOpen ? 'Aberto' : 'Fechado' }}</span>
-                <div [ngClass]="isOpen ? 'open' : 'close'"></div>
-              </button>
-            </td>
-          </ng-container>
-  
-          <tr mat-header-row *matHeaderRowDef="columnsTitles"></tr>
-          <tr mat-row *matRowDef="let row; columns: columnsTitles;"></tr>
-        </table>
-  
-        <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
-      </div>
-    </div>
-  </main>
-  
+<div class="main-content">
+  <header>
+    <svg width="11" height="12" viewBox="0 0 11 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M1.74994 9.87498H3.62494V6.74998C3.62494 6.5729 3.68483 6.42446 3.80463 6.30467C3.92442 6.18488 4.07286 6.12498 4.24994 6.12498H6.74994C6.92702 6.12498 7.07546 6.18488 7.19525 6.30467C7.31504 6.42446 7.37494 6.5729 7.37494 6.74998V9.87498H9.24994V4.24998L5.49994 1.43748L1.74994 4.24998V9.87498ZM0.499939 9.87498V4.24998C0.499939 4.05207 0.54421 3.86457 0.632751 3.68748C0.721293 3.5104 0.843689 3.36457 0.999939 3.24998L4.74994 0.437485C4.96869 0.270818 5.21869 0.187485 5.49994 0.187485C5.78119 0.187485 6.03119 0.270818 6.24994 0.437485L9.99994 3.24998C10.1562 3.36457 10.2786 3.5104 10.3671 3.68748C10.4557 3.86457 10.4999 4.05207 10.4999 4.24998V9.87498C10.4999 10.2187 10.3775 10.513 10.1328 10.7578C9.88796 11.0026 9.59369 11.125 9.24994 11.125H6.74994C6.57285 11.125 6.42442 11.0651 6.30463 10.9453C6.18483 10.8255 6.12494 10.6771 6.12494 10.5V7.37498H4.87494V10.5C4.87494 10.6771 4.81504 10.8255 4.69525 10.9453C4.57546 11.0651 4.42702 11.125 4.24994 11.125H1.74994C1.40619 11.125 1.11192 11.0026 0.867126 10.7578C0.622335 10.513 0.499939 10.2187 0.499939 9.87498Z" fill="#1C1B1F"/>
+    </svg>
+    <span class="links">Unidade</span>
+  </header>
+
+  <section class="filter separate">
+    <span class="filter-title">FILTROS</span>
+    <form action="" method="post" class="filter-search-bar">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M5.91667 11.3333C4.40278 11.3333 3.12153 10.809 2.07292 9.76042C1.02431 8.71181 0.5 7.43056 0.5 5.91667C0.5 4.40278 1.02431 3.12153 2.07292 2.07292C3.12153 1.02431 4.40278 0.5 5.91667 0.5C7.43056 0.5 8.71181 1.02431 9.76042 2.07292C10.809 3.12153 11.3333 4.40278 11.3333 5.91667C11.3333 6.52778 11.2361 7.10417 11.0417 7.64583C10.8472 8.1875 10.5833 8.66667 10.25 9.08333L14.9167 13.75C15.0694 13.9028 15.1458 14.0972 15.1458 14.3333C15.1458 14.5694 15.0694 14.7639 14.9167 14.9167C14.7639 15.0694 14.5694 15.1458 14.3333 15.1458C14.0972 15.1458 13.9028 15.0694 13.75 14.9167L9.08333 10.25C8.66667 10.5833 8.1875 10.8472 7.64583 11.0417C7.10417 11.2361 6.52778 11.3333 5.91667 11.3333ZM5.91667 9.66667C6.95833 9.66667 7.84375 9.30208 8.57292 8.57292C9.30208 7.84375 9.66667 6.95833 9.66667 5.91667C9.66667 4.875 9.30208 3.98958 8.57292 3.26042C7.84375 2.53125 6.95833 2.16667 5.91667 2.16667C4.875 2.16667 3.98958 2.53125 3.26042 3.26042C2.53125 3.98958 2.16667 4.875 2.16667 5.91667C2.16667 6.95833 2.53125 7.84375 3.26042 8.57292C3.98958 9.30208 4.875 9.66667 5.91667 9.66667Z" fill="#1C1B1F"/>
+      </svg>
+      <input type="text" placeholder="Buscar..." class="filter-input-search" (input)="applyFilter($event)">
+    </form>
+  </section>
+
+  <div class="table-container">
+    <table mat-table [dataSource]="dataSource">
+      <ng-container matColumnDef="distritos">
+        <th mat-header-cell *matHeaderCellDef>DISTRITOS</th>
+        <td mat-cell *matCellDef="let element">
+          <div>{{element.distrito}}</div>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="unidades">
+        <th mat-header-cell *matHeaderCellDef>UNIDADES</th>
+        <td mat-cell *matCellDef="let element">
+          <div class="unit-element">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="..." fill="#1C1B1F"/>
+            </svg>
+            <span class="unit-text">{{element.no_unidade_saude}}</span>
+          </div>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="boletim">
+        <th mat-header-cell *matHeaderCellDef>BOLETIM</th>
+        <td mat-cell *matCellDef="let element">
+          <a routerLink="../{{element.distrito}}/tuberculose" class="tuberculose">Tuberculose</a>
+          <a routerLink="../{{element.distrito}}/hanseniase" class="hanseniase">Hanseníase</a>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef>STATUS</th>
+        <td mat-cell *matCellDef="let element">
+          <button (click)="setStatus(element.distrito-1)" type="button" class="button-display">
+            <span class="status-text">{{ statusButtons[element.distrito-1] ? 'Aberto' : 'Fechado' }}</span>
+            <div [ngClass]="statusButtons[element.distrito-1] ? 'open' : 'close'"></div>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="columnsTitles"></tr>
+      <tr mat-row *matRowDef="let row; columns: columnsTitles;"></tr>
+    </table>
+
+    <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </div>
+</div>  
