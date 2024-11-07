@@ -1,8 +1,25 @@
+// Tags
+
 main{
     display: flex;
     width: 100dvw;
 }
 
+header{
+    display: flex;
+    align-items: center;
+    font-size:  small;
+    font-weight: 500;
+    margin-bottom: 0.5rem
+}
+
+// Classes
+
 .main-div{
     width: 100%;
+    padding: 1.5rem;
+}
+
+.links{
+    margin-left: 0.5rem;
 }
