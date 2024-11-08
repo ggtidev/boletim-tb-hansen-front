@@ -1,0 +1,210 @@
+@import "../../../styles.scss";
+
+main {
+  display: flex;
+  width: 100vw;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+th {
+  text-align: left;
+  padding: 0.3rem 0.5rem;
+  font-weight: 600;
+  color: #333;
+}
+
+td {
+  padding: 0.3rem 0.5rem;
+  font-weight: 500;
+  color: #333;
+  text-align: left;
+  white-space: nowrap;
+}
+
+td > * {
+  background-color: #ffffff;
+  padding: 0.3rem;
+  border-radius: 0.3rem;
+}
+
+td button {
+  margin: 0 0.2rem;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+  cursor: pointer;
+}
+
+.hidden-column {
+  display: none;
+}
+
+.hidden-column th,
+.hidden-column td {
+  display: none;
+}
+
+.main-content {
+  padding: 1.5rem;
+  width: 100%;
+}
+
+.links {
+  margin-left: 0.5rem;
+}
+
+.filter {
+  padding: 1rem;
+  background-color: #e5e5e5;
+  border-radius: $border-radius-value;
+  display: flex;
+  flex-direction: column;
+}
+
+.separate {
+  margin: 0.5rem 0 1.5rem;
+}
+
+.filter-title {
+  margin: 0 0.75rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.filter-search-bar {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  background-color: white;
+  border-radius: 0.8rem;
+  border: 1px solid #ddd;
+}
+
+.filter-search-bar > * {
+  margin-left: 0.5rem;
+}
+
+.filter-input-search {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  outline: none;
+  border: none;
+  font-size: 1rem;
+  color: #333;
+}
+
+.table-container {
+  border-radius: $border-radius-value;
+  overflow: hidden;
+  position: relative;
+  background-color: #f9f9f9;
+  padding: 0.5rem;
+
+  table {
+    width: 100%;
+    border-spacing: 0;
+    background-color: #e5e5e5;
+    overflow-y: auto;
+  }
+}
+
+.icon {
+  cursor: pointer;
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+
+  .modal-content {
+    background-color: #fff;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 400px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+
+    h3 {
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+      color: #333;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 1rem;
+
+      li {
+        padding: 0.5rem;
+        font-weight: 500;
+        color: #333;
+        text-align: left;
+      }
+    }
+
+    button {
+      margin-top: 1rem;
+      padding: 0.5rem 1rem;
+      border: none;
+      background-color: #4caf50;
+      color: #fff;
+      border-radius: 4px;
+      font-size: 1rem;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #45a049;
+      }
+
+      &:first-of-type {
+        margin-right: 0.5rem;
+        background-color: #e0e0e0;
+        color: #333;
+
+        &:hover {
+          background-color: #d5d5d5;
+        }
+      }
+    }
+
+    label {
+      display: flex;
+      align-items: center;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+      color: #333;
+
+      input[type="checkbox"] {
+        margin-right: 0.5rem;
+      }
+    }
+  }
+}
