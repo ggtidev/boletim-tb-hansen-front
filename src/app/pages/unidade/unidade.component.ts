@@ -1,22 +1,22 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { UnidadeWebhookService, WebHookStruct } from '../../shared/services/webhook/unidade/unidade-webhook.service';
 import { HttpClientModule } from '@angular/common/http';
-import { SidebarComponent } from '../../shared/sidebar/sidebar.component';
 import { MatTableDataSource } from '@angular/material/table';
 import { AfterViewInit } from '@angular/core';
 
 @Component({
   selector: 'app-unidade',
   standalone: true,
-  imports: [CommonModule, MatTableModule, SidebarComponent, HttpClientModule, MatPaginatorModule],
+  imports: [CommonModule, RouterLink, MatTableModule, HttpClientModule, MatPaginatorModule],
   templateUrl: './unidade.component.html',
   styleUrls: ['./unidade.component.scss']
 })
 export class UnidadeComponent implements OnInit, AfterViewInit {
-  isOpen = true;
+  statusButtons:boolean[] = [];
   columnsTitles: string[] = ['distritos', 'unidades', 'boletim', 'status'];
   dataSource = new MatTableDataSource<WebHookStruct>();
 
@@ -28,6 +28,7 @@ export class UnidadeComponent implements OnInit, AfterViewInit {
     this.unidadeWebhookService.get().subscribe({
       next: (data) => {
         this.dataSource.data = data;
+        this.statusButtons = Array(data.length).fill(true);
       },
       error: (err) => console.error('Erro ao buscar o elemento do webhook', err),
     });
@@ -37,8 +38,8 @@ export class UnidadeComponent implements OnInit, AfterViewInit {
     this.dataSource.paginator = this.paginator;
   }
 
-  setIsOpen() {
-    this.isOpen = !this.isOpen;
+  setStatus(index:number) {
+    this.statusButtons[index] = !this.statusButtons[index];
   }
 
   applyFilter(event: Event) {
