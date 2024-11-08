@@ -1,0 +1,217 @@
+<div class="main-container">
+  <app-sidebar></app-sidebar>
+  <div class="formulario-container">
+    <div class="form-header">
+      <h2>Boletim de Acompanhamento de Tuberculose</h2>
+      <p>DISTRITO SANITÁRIO 1</p>
+      <p>MÊS: AGOSTO</p>
+      <p>UNIDADE DE SAÚDE: US 128 POLICLINICA LESSA DE ANDRADE</p>
+    </div>
+
+    <div class="table-responsive">
+      <table mat-table [dataSource]="dataSource">
+        <ng-container matColumnDef="nu_notificacao_atual">
+          <th mat-header-cell *matHeaderCellDef class="fixed">
+            Nº da notificação atual
+          </th>
+          <td mat-cell *matCellDef="let element" class="fixed">
+            {{ element.nu_notificacao_atual || "-" }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="dt_notificacao_atual">
+          <th mat-header-cell *matHeaderCellDef class="fixed">
+            Data da notificação atual
+          </th>
+          <td mat-cell *matCellDef="let element" class="fixed">
+            {{
+              element.dt_notificacao_atual
+                ? (element.dt_notificacao_atual | date : "dd/MM/yyyy")
+                : "-"
+            }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="no_nome_paciente">
+          <th mat-header-cell *matHeaderCellDef class="fixed">Nome</th>
+          <td mat-cell *matCellDef="let element" class="fixed">
+            {{ element.no_nome_paciente || "-" }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="st_baciloscopia_2_mes">
+          <th mat-header-cell *matHeaderCellDef>Bac 2° Mês</th>
+          <td mat-cell *matCellDef="let element">
+            <div class="status-button">{{ element.st_baciloscopia_2_mes || "-" }}</div>   
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="st_baciloscopia_4_mes">
+          <th mat-header-cell *matHeaderCellDef>Bac 4° Mês</th>
+          <td mat-cell *matCellDef="let element">
+            <div class="status-button"> {{ element.st_baciloscopia_4_mes || "-" }} </div>   
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="st_baciloscopia_6_mes">
+          <th mat-header-cell *matHeaderCellDef>Bac 6° Mês</th>
+          <td mat-cell *matCellDef="let element">
+            <div class="status-button">{{ element.st_baciloscopia_6_mes || "-" }}</div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="st_bacil_apos_6_mes">
+          <th mat-header-cell *matHeaderCellDef>Bac após 6° Mês</th>
+          <td mat-cell *matCellDef="let element">
+            <div class="status-button">{{ element.st_bacil_apos_6_mes || "-" }}</div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="nu_contato_examinado">
+          <th mat-header-cell *matHeaderCellDef>Total contato exam</th>
+          <td mat-cell *matCellDef="let element">
+            <div class="status-button">{{ element.nu_contato_examinado || "-" }}</div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="tp_antirretroviral_trat">
+          <th mat-header-cell *matHeaderCellDef>Tratamento antirretroviral</th>
+          <td mat-cell *matCellDef="let element">
+            <div class="status-button">{{ element.tp_antirretroviral_trat || "-" }}</div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="tp_molecular">
+          <th mat-header-cell *matHeaderCellDef>Molecular</th>
+          <td mat-cell *matCellDef="let element">
+            <div class="status-button">{{ element.tp_molecular || "-" }}</div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="tp_situacao_encerramento">
+          <th mat-header-cell *matHeaderCellDef>Situação encerramento</th>
+          <td mat-cell *matCellDef="let element">
+            <div class="status-button">{{ element.tp_situacao_encerramento || "-" }}</div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="dt_encerramento">
+          <th mat-header-cell *matHeaderCellDef>Data de encerramento</th>
+          <td mat-cell *matCellDef="let element">
+            <div class="status-button">{{
+              element.dt_encerramento
+                ? (element.dt_encerramento | date : "dd/MM/yyyy")
+                : "-"
+            }}</div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="tp_cultura_escarro">
+          <th mat-header-cell *matHeaderCellDef>Cultura de escarro</th>
+          <td mat-cell *matCellDef="let element">
+            <div class="status-button">{{ element.tp_cultura_escarro || "-" }}</div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="tp_sensibilidade">
+          <th mat-header-cell *matHeaderCellDef>Sensibilidade</th>
+          <td mat-cell *matCellDef="let element">
+            <div class="status-button">{{ element.tp_sensibilidade || "-" }}</div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="tp_hiv">
+          <th mat-header-cell *matHeaderCellDef>HIV</th>
+          <td mat-cell *matCellDef="let element">
+            <div class="status-button">{{ element.tp_hiv || "-" }}</div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="tp_histopatologia">
+          <th mat-header-cell *matHeaderCellDef>Histopatologia</th>
+          <td mat-cell *matCellDef="let element">
+            <div class="status-button">{{ element.tp_histopatologia || "-" }}</div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="ds_observacao">
+          <th mat-header-cell *matHeaderCellDef>Observação</th>
+          <td mat-cell *matCellDef="let element">
+            <div class="status-button">{{ element.ds_observacao || "-" }}</div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="st_baciloscopia_1_mes">
+          <th mat-header-cell *matHeaderCellDef>Bac 1° Mês</th>
+          <td mat-cell *matCellDef="let element">
+            <div class="status-button">{{ element.st_baciloscopia_1_mes || "-" }}</div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="st_baciloscopia_3_mes">
+          <th mat-header-cell *matHeaderCellDef>Bac 3° Mês</th>
+          <td mat-cell *matCellDef="let element">
+            <div class="status-button">{{ element.st_baciloscopia_3_mes || "-" }}</div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="st_baciloscopia_5_mes">
+          <th mat-header-cell *matHeaderCellDef>Bac 5° Mês</th>
+          <td mat-cell *matCellDef="let element">
+            <div class="status-button">{{ element.st_baciloscopia_5_mes || "-" }}</div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="ds_estabelecimento">
+          <th mat-header-cell *matHeaderCellDef>Estabelecimento</th>
+          <td mat-cell *matCellDef="let element">
+            <div class="status-button">{{ element.ds_estabelecimento || "-" }}</div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="tp_tratamento_acompanhamento">
+          <th mat-header-cell *matHeaderCellDef>Tratamento/Acompanhamento</th>
+          <td mat-cell *matCellDef="let element">
+            <div class="status-button">{{ element.tp_tratamento_acompanhamento || "-" }}</div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="tp_forma">
+          <th mat-header-cell *matHeaderCellDef>Forma</th>
+          <td mat-cell *matCellDef="let element">
+            <div class="status-button">{{ element.tp_forma || "-" }}</div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="nu_contato">
+          <th mat-header-cell *matHeaderCellDef>Contato</th>
+          <td mat-cell *matCellDef="let element">
+            <div class="status-button">{{ element.nu_contato || "-" }}</div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="co_municipio_transf">
+          <th mat-header-cell *matHeaderCellDef>Município de Transferência</th>
+          <td mat-cell *matCellDef="let element">
+            <div class="status-button">{{ element.co_municipio_transf || "-" }}</div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="tp_transf">
+          <th mat-header-cell *matHeaderCellDef>Tipo de Transferência</th>
+          <td mat-cell *matCellDef="let element">
+            <div class="status-button">{{ element.tp_transf || "-" }}</div>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+
+      <mat-paginator
+        [pageSizeOptions]="[5, 10, 20]"
+        showFirstLastButtons
+      ></mat-paginator>
+    </div>
+  </div>
+</div>

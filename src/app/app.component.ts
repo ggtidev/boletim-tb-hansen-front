@@ -1,10 +1,14 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [
+    RouterOutlet,
+    CommonModule
+  ],
   template: `
     <div>
       <router-outlet></router-outlet>
@@ -12,5 +16,5 @@ import { RouterOutlet } from '@angular/router';
   `,
 })
 export class AppComponent {
-  title = 'boletim';
+  title = 'Boletim';
 }

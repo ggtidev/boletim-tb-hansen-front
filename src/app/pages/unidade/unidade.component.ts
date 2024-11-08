@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { MatTableModule } from '@angular/material/table';
@@ -6,7 +6,8 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { UnidadeWebhookService, WebHookStruct } from '../../shared/services/webhook/unidade/unidade-webhook.service';
 import { HttpClientModule } from '@angular/common/http';
 import { MatTableDataSource } from '@angular/material/table';
-import { AfterViewInit } from '@angular/core';
+import { AuthService } from '../../shared/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-unidade',
@@ -22,9 +23,18 @@ export class UnidadeComponent implements OnInit, AfterViewInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private unidadeWebhookService: UnidadeWebhookService) {}
+  constructor(
+    private unidadeWebhookService: UnidadeWebhookService,
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
+    if (!this.authService.isAuthenticated()) {
+      this.router.navigate(['/login-redirect']);
+      return;
+    }
+
     this.unidadeWebhookService.get().subscribe({
       next: (data) => {
         this.dataSource.data = data;
