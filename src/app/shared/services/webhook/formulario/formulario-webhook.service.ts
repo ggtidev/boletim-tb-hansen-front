@@ -37,7 +37,7 @@ export interface FormularioData {
   providedIn: 'root',
 })
 export class FormularioWebhookService {
-  private formularioUrl = 'http://192.168.18.129:5678/webhook/g-tuberculose';
+  private formularioUrl = 'http://192.168.0.21:5678/webhook/g-tuberculose';
 
   constructor(private http: HttpClient) {}
 

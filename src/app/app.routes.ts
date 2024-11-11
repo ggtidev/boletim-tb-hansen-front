@@ -4,16 +4,15 @@ import { LoginRedirectComponent } from './pages/login-redirect/login-redirect.co
 import { UsersComponent } from './pages/users/users.component';
 import { FormularioComponent } from './pages/formulario/formulario.component';
 import { AuthGuard } from './shared/guards/auth.guard';
+import { BoletinsComponent } from './pages/boletins/boletins.component';
 
 export const routes: Routes = [
   { path: 'unidade', component: UnidadeComponent, canActivate: [AuthGuard] },
   { path: 'users', component: UsersComponent, canActivate: [AuthGuard] },
+  { path: 'formulario', component: FormularioComponent },
   {
-    path: 'formulario',
-    loadComponent: () =>
-      import('./pages/formulario/formulario.component').then(
-        (m) => m.FormularioComponent
-      ),
+    path: 'boletim/:tipo/:distrito/:unidade',
+    component: BoletinsComponent,
   },
   { path: 'login-redirect', component: LoginRedirectComponent },
   { path: '', redirectTo: '/login-redirect', pathMatch: 'full' },

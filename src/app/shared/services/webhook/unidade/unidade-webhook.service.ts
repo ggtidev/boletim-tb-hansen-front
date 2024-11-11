@@ -12,7 +12,7 @@ export interface WebHookStruct {
   providedIn: 'root'
 })
 export class UnidadeWebhookService {
-  private webhookUrl = 'http://192.168.18.129:5678/webhook/unidades';
+  private webhookUrl = 'http://192.168.0.21:5678/webhook/unidades';
 
   constructor(private http: HttpClient) { }
 
