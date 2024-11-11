@@ -17,7 +17,6 @@ export class AuthGuard implements CanActivate {
       const urlParams = new URLSearchParams(window.location.search);
       if (urlParams.get('authenticated') === 'true') {
         this.authService.setAuthenticated(true);
-        
         urlParams.delete('authenticated');
         window.history.replaceState({}, '', `${window.location.pathname}?${urlParams.toString()}`);
         return true;

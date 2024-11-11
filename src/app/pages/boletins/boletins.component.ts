@@ -1,18 +1,21 @@
-import { Component, ViewChild } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { MatTableModule, MatTableDataSource } from '@angular/material/table';
-import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { MatPaginator } from '@angular/material/paginator';
+import { SidebarComponent } from '../../shared/sidebar/sidebar.component';
 
 @Component({
   selector: 'app-boletins',
   standalone: true,
-  imports: [MatTableModule, MatPaginatorModule, RouterLink],
+  imports: [MatTableModule, MatPaginator, SidebarComponent],
   templateUrl: './boletins.component.html',
-  styleUrl: './boletins.component.scss'
+  styleUrls: ['./boletins.component.scss']
 })
-export class BoletinsComponent{
-  router:Router = new Router();
-  columnsTitles:string[] = ['id', 'ciclo', 'inicio', 'fim', 'contador', 'boletim'];
+export class BoletinsComponent implements OnInit {
+  tipo: string = '';
+  distrito: string = '';
+  unidade: string = '';
+  columnsTitles: string[] = ['id', 'ciclo', 'inicio', 'fim', 'contador', 'boletim'];
 
   dataSource = new MatTableDataSource([
     {
@@ -26,10 +29,18 @@ export class BoletinsComponent{
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  getRouterName(){
-    if(this.router.url.match(/home\/\d+\/tuberculose$/)) return 'Tuberculose';
-    
-    return 'Hanseniase';
+  constructor(private route: ActivatedRoute) {}
+
+  ngOnInit(): void {
+    this.route.params.subscribe(params => {
+      this.tipo = params['tipo'] === 'tuberculose' ? 'Tuberculose' : 'Hanseníase';
+      this.distrito = params['distrito'];
+      this.unidade = params['unidade'];
+    });
+  }
+
+  ngAfterViewInit(): void {
+    this.dataSource.paginator = this.paginator;
   }
 
   applyFilter(event: Event) {

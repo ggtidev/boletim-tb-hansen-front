@@ -20,11 +20,11 @@ export interface Permission {
   providedIn: 'root',
 })
 export class UsersWebhookService {
-  private usersUrl = 'http://192.168.18.129:5678/webhook/users';
+  private usersUrl = 'http://192.168.0.21:5678/webhook/users';
   private permissionsUrl =
-    'http://192.168.18.129:5678/webhook/check-permissions';
+    'http://192.168.0.21:5678/webhook/check-permissions';
   private updatePermissionsUrl =
-    'http://192.168.18.129:5678/webhook/u-permissions';
+    'http://192.168.0.21:5678/webhook/u-permissions';
 
   constructor(private http: HttpClient) {}
 
