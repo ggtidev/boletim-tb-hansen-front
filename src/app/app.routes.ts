@@ -7,14 +7,11 @@ import { AuthGuard } from './shared/guards/auth.guard';
 import { BoletinsComponent } from './pages/boletins/boletins.component';
 
 export const routes: Routes = [
-  { path: 'unidade', component: UnidadeComponent, canActivate: [AuthGuard] },
-  { path: 'users', component: UsersComponent, canActivate: [AuthGuard] },
-  { path: 'formulario', component: FormularioComponent },
-  {
-    path: 'boletim/:tipo/:distrito/:unidade',
-    component: BoletinsComponent,
-  },
-  { path: 'login-redirect', component: LoginRedirectComponent },
+  { path: 'unidade', component: UnidadeComponent, data: { breadcrumb: 'Unidade' }, canActivate: [AuthGuard] },
+  { path: 'users', component: UsersComponent, data: { breadcrumb: 'Gestão de Usuários' }, canActivate: [AuthGuard] },
+  { path: 'formulario', component: FormularioComponent, data: { breadcrumb: 'Formulário' }, canActivate: [AuthGuard] },
+  { path: 'boletim/:tipo/:distrito/:unidade', component: BoletinsComponent, data: { breadcrumb: 'Boletim' }, canActivate: [AuthGuard] },
+  { path: 'login-redirect', component: LoginRedirectComponent},
   { path: '', redirectTo: '/login-redirect', pathMatch: 'full' },
   { path: '**', redirectTo: '/login-redirect' },
 ];

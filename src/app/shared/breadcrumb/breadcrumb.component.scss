@@ -1,0 +1,25 @@
+.breadcrumb {
+    font-size: 0.7rem;
+    color: #666;
+    margin-bottom: 0.3rem;
+    margin-top: 0.3rem;
+    display: flex;
+    align-items: center;
+  
+    svg {
+      width: 0.9rem;
+      height: 0.9rem;
+      margin-right: 0.2rem;
+    }
+  
+    span {
+      position: relative;
+      top: 1px;
+  
+      &:not(:last-child)::after {
+        content: "";
+        margin: 0 0.2rem;
+      }
+    }
+  }
+  

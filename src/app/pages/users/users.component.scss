@@ -1,4 +1,5 @@
-@import "../../../styles.scss";
+$border-radius-value: 1.5rem;
+$background-light: #e0e0e0;
 
 main {
   display: flex;
@@ -10,57 +11,13 @@ header {
   align-items: center;
   font-size: 1.1rem;
   font-weight: bold;
+  color: #333;
   margin-bottom: 0.5rem;
-  color: #333;
-}
-
-th {
-  text-align: left;
-  padding: 0.3rem 0.5rem;
-  font-weight: 600;
-  color: #333;
-}
-
-td {
-  padding: 0.3rem 0.5rem;
-  font-weight: 500;
-  color: #333;
-  text-align: left;
-  white-space: nowrap;
-}
-
-td > * {
-  background-color: #ffffff;
-  padding: 0.3rem;
-  border-radius: 0.3rem;
-}
-
-td button {
-  margin: 0 0.2rem;
-}
-
-a {
-  text-decoration: none;
-  color: black;
-  cursor: pointer;
-}
-
-.hidden-column {
-  display: none;
-}
-
-.hidden-column th,
-.hidden-column td {
-  display: none;
 }
 
 .main-content {
   padding: 1.5rem;
   width: 100%;
-}
-
-.links {
-  margin-left: 0.5rem;
 }
 
 .filter {
@@ -88,28 +45,18 @@ a {
   background-color: white;
   border-radius: 0.8rem;
   border: 1px solid #ddd;
-}
 
-.filter-search-bar > * {
-  margin-left: 0.5rem;
-}
-
-.filter-input-search {
-  display: flex;
-  flex: 1;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  outline: none;
-  border: none;
-  font-size: 1rem;
-  color: #333;
+  .filter-input-search {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    color: #333;
+  }
 }
 
 .table-container {
   border-radius: $border-radius-value;
-  overflow: hidden;
-  position: relative;
   background-color: #f9f9f9;
   padding: 0.5rem;
 
@@ -117,7 +64,23 @@ a {
     width: 100%;
     border-spacing: 0;
     background-color: #e5e5e5;
-    overflow-y: auto;
+
+    th, td {
+      padding: 0.5rem;
+      font-size: 0.75rem;
+      color: #333;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      font-weight: bold;
+      background-color: #f5f5f5;
+    }
+
+    .hidden-column {
+      display: none;
+    }
   }
 }
 
@@ -144,48 +107,39 @@ a {
 
   .modal-content {
     background-color: #fff;
-    border-radius: 8px;
+    border-radius: $border-radius-value;
+    padding: 1.5rem;
     width: 90%;
     max-width: 400px;
-    padding: 1.5rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     text-align: center;
 
     h3 {
       font-size: 1.25rem;
-      margin-bottom: 1rem;
       color: #333;
+      margin-bottom: 1rem;
     }
 
     ul {
       list-style: none;
       padding: 0;
-      margin-bottom: 1rem;
+      color: #333;
 
       li {
         padding: 0.5rem;
-        font-weight: 500;
-        color: #333;
-        text-align: left;
       }
     }
 
     button {
-      margin-top: 1rem;
       padding: 0.5rem 1rem;
       border: none;
-      background-color: #4caf50;
-      color: #fff;
       border-radius: 4px;
       font-size: 1rem;
       cursor: pointer;
-
-      &:hover {
-        background-color: #45a049;
-      }
+      margin-top: 1rem;
+      color: #fff;
 
       &:first-of-type {
-        margin-right: 0.5rem;
         background-color: #e0e0e0;
         color: #333;
 
@@ -193,13 +147,19 @@ a {
           background-color: #d5d5d5;
         }
       }
+
+      &:last-of-type {
+        background-color: #4caf50;
+
+        &:hover {
+          background-color: #45a049;
+        }
+      }
     }
 
     label {
       display: flex;
       align-items: center;
-      margin-bottom: 0.5rem;
-      font-weight: 500;
       color: #333;
 
       input[type="checkbox"] {
