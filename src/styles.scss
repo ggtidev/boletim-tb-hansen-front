@@ -11,3 +11,15 @@ body {
     font-family: "Inter", sans-serif;
     font-optical-sizing: auto;
 }
+
+/* Estilo do fundo escuro do overlay */
+.custom-backdrop {
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+/* Estilos personalizados para o diálogo */
+.custom-dialog-container {
+    border-radius: 2.5rem;
+    background-color: #E5E5E5;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }

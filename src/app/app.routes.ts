@@ -3,6 +3,7 @@ import { AuthComponent } from './pages/auth/auth.component';
 import { UnidadeComponent } from './pages/unidade/unidade.component';
 import { HomeComponent } from './pages/home/home.component';
 import { BoletinsComponent } from './pages/boletins/boletins/boletins.component';
+import { FormularioComponent } from './pages/formulario/formulario/formulario.component';
 
 export const routes: Routes = [
     { path: 'auth', component: AuthComponent },
@@ -11,6 +12,7 @@ export const routes: Routes = [
         { path: ':id/tuberculose', component: BoletinsComponent },
         { path: ':id/hanseniase', component: BoletinsComponent },
     ] },
+    { path: 'formulario', component: FormularioComponent },
     { path: '', redirectTo: '/auth', pathMatch: 'full' },
     { path: '**', redirectTo: '/auth' }
 ];

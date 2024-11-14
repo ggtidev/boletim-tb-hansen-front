@@ -1,0 +1,30 @@
+form{
+    width: 100%;
+    height: 100%;
+    padding: 1rem;
+    background-color: #E5E5E5;
+}
+
+.overlay-header{
+    padding: 0.5rem 0;
+
+    .overlay-header-title{
+        font-size: larger;
+        font-weight: bold;
+    }
+
+    .overlay-header-data{
+        display: flex;
+        padding: 0.5rem 0;
+
+        .data{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+            *{
+                margin-top: 0.25rem;
+            }
+        }
+    }
+}

@@ -1,0 +1,67 @@
+<form>
+    <section class="overlay-header">
+        <span class="overlay-header-title">Boletim de Acompanhamento de Tuberculose</span>
+
+        <div class="overlay-header-data">
+            <div class="data">
+                <span>DISTRITO SANITÁRIO 1</span>
+
+                <span>MÊS: AGOSTO </span>
+
+                <span>UNIDADE DE SAÚDE: US 128 POLICLINICA LESSA DE ANDRADE</span>
+            </div>
+
+            <div class="data">
+                <span>N° DA NOTIFICAÇÃO ATUAL: 777777</span>
+
+                <span>DATA DA NOTIFICAÇÃO ATUAL: DD/MM/AAAA</span>
+
+                <span>NOME: MARCIA DOS SANTOS FERREIRA</span>
+            </div>
+        </div>
+    </section>
+    
+    <section>
+        <div>
+            <div>
+                <span>Forma</span>
+                <span>1</span>
+            </div>
+        </div>
+
+        <div>
+            @for(column of displayedColumns; track column.nome){
+                <div>
+                    <span>{{column.nome}}</span>
+                    <select name="{{column.nome}}" id="{{column.nome}}">
+                        <option value=""></option>
+                    </select>
+                </div>
+            }
+        </div>
+    </section>
+    
+    <section>
+        <h1>Teste três</h1>
+    </section>
+
+    <section>
+        <button type="submit">
+            <svg width="15" height="11" viewBox="0 0 15 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M13.2792 0.975098L5.12505 8.7001L1.72088 5.4751L0.612549 6.5251L4.57088 10.2751L5.12505 10.8001L5.67922 10.2751L14.3876 2.0251L13.2792 0.975098Z" fill="#1C1B1F"/>
+            </svg>
+            
+            <span>Salvar</span>
+        </button>
+
+        <button type="button" (click)="closeDialog()">
+            <svg width="14" height="11" viewBox="0 0 14 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 10.0704L12.9384 1" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M1 1L12.9384 10.0704" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+                
+            
+            <span>Fechar</span>
+        </button>
+    </section>
+</form>

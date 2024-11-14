@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SidebarComponent } from './sidebar.component';
+import { OverlayFormComponent } from './overlay-form.component';
 
-describe('SidebarComponent', () => {
-  let component: SidebarComponent;
-  let fixture: ComponentFixture<SidebarComponent>;
+describe('OverlayFormComponent', () => {
+  let component: OverlayFormComponent;
+  let fixture: ComponentFixture<OverlayFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SidebarComponent]
+      imports: [OverlayFormComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(SidebarComponent);
+    fixture = TestBed.createComponent(OverlayFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
