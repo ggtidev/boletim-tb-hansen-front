@@ -120,13 +120,14 @@ app-sidebar {
     }
 
     .formulario-usuario-botao{
-        width: 100%;
-        height: 100%;
-        border: none;
-        text-decoration: none;
-        font-size: 14px;
-        font-weight: bold;
-        cursor: pointer;
+      width: 100%;
+      height: 100%;
+      background-color: transparent;
+      border: none;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
     }
 
     &::-webkit-scrollbar {
