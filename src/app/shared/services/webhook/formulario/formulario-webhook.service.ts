@@ -60,8 +60,8 @@ export type FormularioData = TuberculoseData | HanseniaseData;
   providedIn: 'root',
 })
 export class FormularioWebhookService {
-  private tuberculoseUrl = 'http://192.168.0.18:5678/webhook/g-tuberculose';
-  private hanseniaseUrl = 'http://192.168.0.18:5678/webhook/g-hanseniase';
+  private tuberculoseUrl = 'http://192.168.18.129:5678/webhook/g-tuberculose';
+  private hanseniaseUrl = 'http://192.168.18.129:5678/webhook/g-hanseniase';
 
   constructor(private http: HttpClient) {}
   getData(tipo: string): Observable<FormularioData[]> {

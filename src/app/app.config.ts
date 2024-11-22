@@ -10,6 +10,9 @@ import { routes } from './app.routes';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { AuthGuard } from './shared/guards/auth.guard';
 import { UsersWebhookService } from './shared/services/webhook/users/users-webhook.service';
+import { importProvidersFrom } from '@angular/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 
 // Registra o locale pt-BR
 registerLocaleData(localePt, 'pt-BR');
@@ -22,6 +25,8 @@ export const AppConfig: ApplicationConfig = {
     AuthGuard,
     UsersWebhookService,
     { provide: MatPaginatorIntl, useClass: CustomPaginatorIntl },
-    { provide: LOCALE_ID, useValue: 'pt-BR' } 
+    { provide: LOCALE_ID, useValue: 'pt-BR' },
+    { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' }, 
+    importProvidersFrom(MatDatepickerModule, MatNativeDateModule),
   ]
 };

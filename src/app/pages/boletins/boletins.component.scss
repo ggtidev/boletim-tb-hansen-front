@@ -85,27 +85,35 @@ app-sidebar {
 
   .status-button {
     padding: 0.4rem 1rem;
-    background-color: #e0f7e9; /* Verde claro */
-    color: #2e7d32; /* Tom de verde mais escuro */
     border: none;
-    border-radius: 1.5rem; /* Arredondado */
+    border-radius: 1.5rem;
     font-weight: bold;
     font-size: 0.75rem;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease; /* Transição suave */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
-    text-transform: uppercase; /* Texto em maiúsculas */
+    transition: background-color 0.3s ease, color 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-transform: uppercase;
   }
   
-  .status-button:hover {
-    background-color: #c8e6c9; /* Tom de verde um pouco mais escuro no hover */
+  .status-button-open {
+    background-color: #e0f7e9; /* Verde claro */
+    color: #2e7d32; /* Verde escuro */
   }
   
-  .status-button .status-text {
-    text-align: center;
+  .status-button-open:hover {
+    background-color: #c8e6c9;
+  }
+  
+  .status-button-closed {
+    background-color: #ffebee;
+    color: #d32f2f; 
+  }
+  
+  .status-button-closed:hover {
+    background-color: #ffcdd2;
   }
 
   .table-responsive {

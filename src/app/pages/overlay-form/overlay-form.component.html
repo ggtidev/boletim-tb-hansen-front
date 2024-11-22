@@ -1,0 +1,77 @@
+<form>
+  <section class="overlay-header">
+    <span class="overlay-header-title">
+      Boletim de Acompanhamento de {{ data.tipo || '-' }}
+    </span>
+
+    <div class="overlay-header-data">
+      <div class="data">
+        <span><strong>DISTRITO SANITÁRIO:</strong> {{ data.distrito || '-' }}</span>
+        <span><strong>MÊS:</strong> {{ data.ciclo || '-' }}</span>
+        <span><strong>UNIDADE DE SAÚDE:</strong> {{ data.unidade || '-' }}</span>
+      </div>
+
+      <div class="data">
+        <span><strong>N° DA NOTIFICAÇÃO ATUAL:</strong> {{ data.nu_notificacao_atual || '-' }}</span>
+        <span><strong>DATA DA NOTIFICAÇÃO ATUAL:</strong> {{ data.dt_notificacao_atual || '-' }}</span>
+        <span><strong>NOME:</strong> {{ data.no_nome_paciente || '-' }}</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="overlay-main">
+    <div *ngIf="data.tipo === 'tuberculose'">
+      <div class="overlay-main-info">
+        <span class="title">Forma</span>
+        <span>{{ data.tp_forma || '-' }}</span>
+      </div>
+    </div>
+
+    <div *ngFor="let column of displayedGridColumns" class="overlay-main-info">
+      <span class="title">{{ getDisplayLabel(column) }}</span>
+
+      <ng-container *ngIf="getOptions(column).length > 0; else textInput">
+        <select [(ngModel)]="data[column]" name="{{ column }}">
+          <option *ngFor="let option of getOptions(column)" [ngValue]="option.value"
+            [title]="getTooltip(column, option.value)">
+            {{ option.label }}
+          </option>
+        </select>
+      </ng-container>
+
+      <ng-template #textInput>
+        <ng-container *ngIf="column.includes('dt_'); else defaultInput">
+          <mat-form-field appearance="fill" class="date-field">
+            <input matInput [matDatepicker]="picker" [(ngModel)]="data[column]" name="{{ column }}" />
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </ng-container>
+        <ng-template #defaultInput>
+          <input type="text" [(ngModel)]="data[column]" name="{{ column }}" />
+        </ng-template>
+      </ng-template>
+    </div>
+  </section>
+
+  <section class="overlay-comments">
+    <div>
+      <label for="distrito">Obs. Distrito</label>
+      <textarea name="Obs. Distrito" id="distrito">{{ data.obs_distrito }}</textarea>
+    </div>
+
+    <div>
+      <label for="unidade">Obs. Unidade</label>
+      <textarea name="Obs. Unidade" id="unidade">{{ data.obs_unidade }}</textarea>
+    </div>
+  </section>
+
+  <section class="overlay-buttons">
+    <button (click)="saveChanges()">
+      <span>Salvar</span>
+    </button>
+    <button type="button" class="close-button" (click)="closeDialog()">
+      <span>Fechar</span>
+    </button>
+  </section>
+</form>

@@ -54,9 +54,20 @@ export class BoletinsComponent implements OnInit {
     });
   }
 
-  irParaFormulario(): void {
+  // irParaFormulario(): void {
+  //   this.router.navigate(['/formulario'], {
+  //     queryParams: { tipo: this.tipo, distrito: this.distrito, unidade: this.unidade, ciclo: this.ciclo }
+  //   });
+  // }
+
+  irParaFormulario(ciclo: string): void {
     this.router.navigate(['/formulario'], {
-      queryParams: { tipo: this.tipo, distrito: this.distrito, unidade: this.unidade, ciclo: this.ciclo }
+      queryParams: {
+        tipo: this.tipo,
+        distrito: this.distrito,
+        unidade: this.unidade,
+        ciclo: this.formatDateToCycle(ciclo),
+      }
     });
   }
 
@@ -64,8 +75,7 @@ export class BoletinsComponent implements OnInit {
     if (this.cnes) {
       this.boletinsWebhookService.getCiclo(this.cnes).subscribe({
         next: (data) => {
-          this.dataSource.data = [data];
-          this.ciclo = this.formatDateToCycle(data.dt_inicio);
+          this.dataSource.data = data;
         },
         error: (err) => console.error('Erro ao buscar dados do ciclo', err),
       });

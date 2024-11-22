@@ -9,7 +9,7 @@ $table-border-color: #ddd;
 $filter-background: #e5e5e5;
 $search-bar-background: #ffffff;
 $link-tuberculose: #4CAF50;
-$link-hanseniase: #FFA726;
+$link-hanseniase: #4D8FAC;
 $link-hover-brightness: 1.1;
 
 .main-container {
@@ -87,7 +87,8 @@ app-sidebar {
   }
 
   .boletim-link {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
     padding: 0.3rem 0.8rem;
     font-size: 0.75rem;
     font-weight: bold;
@@ -97,6 +98,26 @@ app-sidebar {
     margin: 0 0.2rem;
     transition: background-color 0.3s ease, color 0.3s ease;
     text-decoration: none;
+  
+    // Ícones ao lado do texto para reforço visual
+    .icon {
+      width: 1rem;
+      height: 1rem;
+      margin-right: 0.4rem;
+      fill: currentColor; // Permite que a cor do ícone siga a cor do texto
+    
+      &.tuberculose {
+        fill: #ffffff; // Cor branca para contraste com o botão Tuberculose
+      }
+    
+      &.hanseniase {
+        fill: #ffffff; // Cor branca para contraste com o botão Hanseníase
+      }
+    }
+  
+    &:hover {
+      filter: brightness($link-hover-brightness);
+    }
   }
   
   .tuberculose {
