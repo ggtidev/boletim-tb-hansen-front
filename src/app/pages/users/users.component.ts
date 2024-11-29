@@ -47,7 +47,6 @@ export class UsersComponent implements OnInit, AfterViewInit {
       return;
     }
 
-    // Carrega os dados dos usuários e define o `dataSource`
     this.usersWebhookService.getUsers().subscribe({
       next: (data: User[]) => {
         this.dataSource.data = data;

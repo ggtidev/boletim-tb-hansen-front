@@ -99,19 +99,19 @@ app-sidebar {
     transition: background-color 0.3s ease, color 0.3s ease;
     text-decoration: none;
   
-    // Ícones ao lado do texto para reforço visual
+     
     .icon {
       width: 1rem;
       height: 1rem;
       margin-right: 0.4rem;
-      fill: currentColor; // Permite que a cor do ícone siga a cor do texto
+      fill: currentColor; 
     
       &.tuberculose {
-        fill: #ffffff; // Cor branca para contraste com o botão Tuberculose
+        fill: #ffffff; 
       }
     
       &.hanseniase {
-        fill: #ffffff; // Cor branca para contraste com o botão Hanseníase
+        fill: #ffffff; 
       }
     }
   

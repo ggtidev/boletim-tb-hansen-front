@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../../config/config';
 
 // C.Job do dia - 11-11-2024
 
@@ -25,6 +26,7 @@ export interface TuberculoseData {
   tp_sensibilidade?: string;
   tp_hiv?: string;
   tp_histopatologia?: string;
+  dt_ultimo_comparecimento?: string;
   ds_observacao?: string;
   ds_estabelecimento?: string;
   tp_tratamento_acompanhamento?: string;
@@ -60,8 +62,8 @@ export type FormularioData = TuberculoseData | HanseniaseData;
   providedIn: 'root',
 })
 export class FormularioWebhookService {
-  private tuberculoseUrl = 'http://192.168.18.129:5678/webhook/g-tuberculose';
-  private hanseniaseUrl = 'http://192.168.18.129:5678/webhook/g-hanseniase';
+  private tuberculoseUrl = `${environment.baseUrl}${environment.endpoints.tuberculose}`;
+  private hanseniaseUrl = `${environment.baseUrl}${environment.endpoints.hanseniase}`;
 
   constructor(private http: HttpClient) {}
   getData(tipo: string): Observable<FormularioData[]> {

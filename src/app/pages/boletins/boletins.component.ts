@@ -31,7 +31,7 @@ export class BoletinsComponent implements OnInit {
     private boletinsWebhookService: BoletinsWebhookService,
     private unidadeWebhookService: UnidadeWebhookService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -54,11 +54,6 @@ export class BoletinsComponent implements OnInit {
     });
   }
 
-  // irParaFormulario(): void {
-  //   this.router.navigate(['/formulario'], {
-  //     queryParams: { tipo: this.tipo, distrito: this.distrito, unidade: this.unidade, ciclo: this.ciclo }
-  //   });
-  // }
 
   irParaFormulario(ciclo: string): void {
     this.router.navigate(['/formulario'], {
@@ -71,16 +66,31 @@ export class BoletinsComponent implements OnInit {
     });
   }
 
-  obterDadosCiclo(): void {
-    if (this.cnes) {
-      this.boletinsWebhookService.getCiclo(this.cnes).subscribe({
-        next: (data) => {
-          this.dataSource.data = data;
-        },
-        error: (err) => console.error('Erro ao buscar dados do ciclo', err),
-      });
+  reorganizarBoletins(boletins: CicloStruct[]): CicloStruct[] {
+    const boletimAberto = boletins.find(b => b.status === true); 
+    const boletinsFechados = boletins.filter(b => b.status === false); 
+  
+    let contador = 2; 
+  
+    if (boletimAberto) {
+      boletimAberto.boletim_id = 1; 
     }
+    boletinsFechados.forEach(b => {
+      b.boletim_id = contador++; 
+    });
+    return boletimAberto ? [boletimAberto, ...boletinsFechados] : boletinsFechados;
   }
+
+  obterDadosCiclo(): void {
+  if (this.cnes && this.tipo) {
+    this.boletinsWebhookService.getCiclo(this.cnes, this.tipo).subscribe({
+      next: (data) => {
+        this.dataSource.data = this.reorganizarBoletins(data);
+      },
+      error: (err) => console.error('Erro ao buscar dados do ciclo', err),
+    });
+  }
+}
 
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
@@ -94,5 +104,5 @@ export class BoletinsComponent implements OnInit {
     const formattedDate = new Date(date).toLocaleDateString('pt-BR', { month: 'long', year: 'numeric' });
     return formattedDate.charAt(0).toUpperCase() + formattedDate.slice(1);
   }
-  
+
 }

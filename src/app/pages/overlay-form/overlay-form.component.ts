@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, Output, EventEmitter, output } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -7,6 +7,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { environment } from '../../shared/config/config';
+
 
 @Component({
   selector: 'app-overlay-form',
@@ -17,6 +19,8 @@ import { MatInputModule } from '@angular/material/input';
     MatInputModule],
 })
 export class OverlayFormComponent implements OnInit {
+  @Output() dadosSalvos = new EventEmitter<void>();
+
   displayedGridColumns: string[] = [];
   tipo: string = '';
   campos = [
@@ -59,6 +63,7 @@ export class OverlayFormComponent implements OnInit {
     'dt_mudanca_esquema',
     'tp_alta',
     'dt_alta',
+
   ];
 
   columnLabels: { [key: string]: string } = {
@@ -104,6 +109,8 @@ export class OverlayFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.tipo = this.data?.tipo || '-';
+    this.data.obs_distrito = this.data.obs_distrito || '';
+    this.data.obs_unidade = this.data.obs_unidade || '';
     this.initializeColumns();
   }
 
@@ -132,13 +139,14 @@ export class OverlayFormComponent implements OnInit {
         'st_bacil_apos_6_mes',
         'tp_antirretroviral_trat',
         'tp_molecular',
+        'dt_ultimo_comparecimento',
         'tp_situacao_encerramento',
         'dt_encerramento',
         'tp_cultura_escarro',
         'tp_sensibilidade',
         'tp_hiv',
         'tp_histopatologia',
-        'ds_observacao',
+        // 'ds_observacao',
         'tp_tratamento_acompanhamento',
         'co_municipio_transf',
         // 'nu_contato_examinado',
@@ -168,7 +176,13 @@ export class OverlayFormComponent implements OnInit {
       return;
     }
 
-    const payload: any = { nu_notificacao_atual: nu_notificacao_atual };
+    const payload: any = {
+      nu_notificacao_atual: nu_notificacao_atual,
+      obs_distrito: this.data.obs_distrito,
+      obs_unidade: this.data.obs_unidade,
+      tipo: this.tipo,
+    };
+
     this.campos.forEach(campo => {
       if (this.data[campo] !== undefined && this.data[campo] !== null) {
         payload[campo] = this.data[campo];
@@ -176,18 +190,29 @@ export class OverlayFormComponent implements OnInit {
     });
 
     const apiUrl = this.tipo === 'hanseniase'
-      ? 'http://192.168.18.129:5678/webhook/u-hanseniase'
-      : 'http://192.168.18.129:5678/webhook/u-tuberculose';
+      ? `${environment.baseUrl}${environment.endpoints.uhanseniase}`
+      : `${environment.baseUrl}${environment.endpoints.utuberculose}`;
 
     this.http.put(apiUrl, payload).subscribe(
-      response => {
-        console.log('Atualização bem-sucedida:', response);
+      () => {
         this.dialogRef.close('updated');
       },
       error => {
         console.error('Falha na atualização:', error);
       }
     );
+  }
+
+  formatTitle(title: string): string {
+    const words = title.split(' ');
+    if (words.length > 0) {
+      words[0] = words[0].slice(0, 3) + '.';
+    }
+    return words.join(' ');
+  }
+
+  getContainerClass(): string {
+    return this.tipo === 'tuberculose' ? 'tuberculose' : 'hanseniase';
   }
 
   formatDate(dateString: string): string {

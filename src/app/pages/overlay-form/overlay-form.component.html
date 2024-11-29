@@ -23,13 +23,13 @@
     <div *ngIf="data.tipo === 'tuberculose'">
       <div class="overlay-main-info">
         <span class="title">Forma</span>
-        <span>{{ data.tp_forma || '-' }}</span>
+        <span style="text-align: center;">{{ data.tp_forma || '-' }}</span>
       </div>
     </div>
 
     <div *ngFor="let column of displayedGridColumns" class="overlay-main-info">
-      <span class="title">{{ getDisplayLabel(column) }}</span>
-
+      <span class="title">{{ formatTitle(getDisplayLabel(column)) }}</span>
+    
       <ng-container *ngIf="getOptions(column).length > 0; else textInput">
         <select [(ngModel)]="data[column]" name="{{ column }}">
           <option *ngFor="let option of getOptions(column)" [ngValue]="option.value"
@@ -38,14 +38,15 @@
           </option>
         </select>
       </ng-container>
-
+    
       <ng-template #textInput>
         <ng-container *ngIf="column.includes('dt_'); else defaultInput">
-          <mat-form-field appearance="fill" class="date-field">
-            <input matInput [matDatepicker]="picker" [(ngModel)]="data[column]" name="{{ column }}" />
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <div style="position: relative; width: 100%; display: flex; justify-content: center;">
+            <input [matDatepicker]="picker" [(ngModel)]="data[column]" name="{{ column }}"
+              style="width: 50%; height: 36px; text-align: center; background-color: #dddddda6; border-radius: 0.5rem;"
+              (focus)="picker.open()" (click)="picker.open()" />
             <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field>
+          </div>
         </ng-container>
         <ng-template #defaultInput>
           <input type="text" [(ngModel)]="data[column]" name="{{ column }}" />
@@ -53,25 +54,21 @@
       </ng-template>
     </div>
   </section>
+  <div class="overlay-container" [ngClass]="getContainerClass()">
+    <section class="overlay-comments">
+        <div class="comment-field">
+            <label>Obs. Distrito</label> 
+            <textarea [maxlength]="data.tipo === 'hanseniase' ? 360 : null" [(ngModel)]="data.obs_distrito" name="obs_distrito"></textarea>
+        </div>
+        <div class="comment-field">
+            <label>Obs. Unidade</label>
+            <textarea [maxlength]="data.tipo === 'hanseniase' ? 360 : null" [(ngModel)]="data.obs_unidade" name="obs_unidade"></textarea>
+        </div>
+    </section>
 
-  <section class="overlay-comments">
-    <div>
-      <label for="distrito">Obs. Distrito</label>
-      <textarea name="Obs. Distrito" id="distrito">{{ data.obs_distrito }}</textarea>
-    </div>
-
-    <div>
-      <label for="unidade">Obs. Unidade</label>
-      <textarea name="Obs. Unidade" id="unidade">{{ data.obs_unidade }}</textarea>
-    </div>
-  </section>
-
-  <section class="overlay-buttons">
-    <button (click)="saveChanges()">
-      <span>Salvar</span>
-    </button>
-    <button type="button" class="close-button" (click)="closeDialog()">
-      <span>Fechar</span>
-    </button>
-  </section>
+    <section class="overlay-buttons">
+        <button class="save-button" (click)="saveChanges()">Salvar</button>
+        <button class="close-button" (click)="closeDialog()">Fechar</button>
+    </section>
+</div>
 </form>
