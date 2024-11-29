@@ -1,174 +1,173 @@
-//Variables
 $border-radius-value: 1.5rem;
+$background-light: #e0e0e0;
+$sidebar-background: #f1f1f1;
+$header-text-color: #333;
+$paragraph-text-color: #555;
+$table-header-background: #f5f5f5;
+$table-row-background: #f9f9f9;
+$table-border-color: #ddd;
+$filter-background: #e5e5e5;
+$search-bar-background: #ffffff;
+$link-tuberculose: #4CAF50;
+$link-hanseniase: #4D8FAC;
+$link-hover-brightness: 1.1;
 
-//Tags
-main {
-    display: flex;
-    width: 100dvw;
+.main-container {
+  display: flex;
+  height: 100vh;
 }
 
-header {
+app-sidebar {
+  width: 200px;
+  background-color: $sidebar-background;
+}
+
+.form-content {
+  flex-grow: 1;
+  padding: 15px;
+}
+
+.form-header {
+  margin-bottom: 8px;
+
+  h2 {
+    font-size: 1rem;
+    font-weight: bold;
+    color: $header-text-color;
+  }
+
+  p {
+    font-size: 0.8rem;
+    color: $paragraph-text-color;
+  }
+}
+
+.formulario-container {
+  background-color: $background-light;
+  border-radius: $border-radius-value;
+  padding: 0.8rem;
+  margin-top: 8px;
+
+  .filter {
     display: flex;
     align-items: center;
-    font-size: small;
-    font-weight: bold;
-    margin-bottom: 0.5rem
-}
+    background-color: $filter-background;
+    padding: 0.4rem;
+    border-radius: $border-radius-value;
+    margin-bottom: 0.4rem;
 
-th {
+    .filter-title {
+      margin-right: 0.8rem;
+      font-weight: bold;
+      color: $header-text-color;
+    }
+
+    .filter-search-bar {
+      display: flex;
+      align-items: center;
+      flex-grow: 1;
+      background-color: $search-bar-background;
+      border-radius: 0.5rem;
+      padding: 0.2rem;
+
+      .search-icon {
+        width: 0.8rem;
+        height: 0.8rem;
+        margin-right: 0.2rem;
+      }
+
+      .filter-input-search {
+        flex-grow: 1;
+        border: none;
+        outline: none;
+        font-size: 0.7rem;
+        color: $header-text-color;
+      }
+    }
+  }
+
+  .boletim-link {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.3rem 0.8rem;
+    font-size: 0.75rem;
+    font-weight: bold;
     text-align: center;
-}
-
-td>* {
-    background-color: #FFFFFF;
-    padding: 0.6rem;
-    margin: 0 1rem;
-    border-radius: 0.8rem;
-}
-
-th,
-td {
-    padding: 1rem 0.2rem;
-    font-weight: 600;
-    border: none !important;
-}
-
-a {
-    text-decoration: none;
-    color: black;
-    cursor: pointer;
-}
-
-//Classes
-.main-content {
-    padding: 1.5rem;
-    width: 100%;
-}
-
-.links {
-    margin-left: 0.5rem;
-}
-
-.filter {
-    padding: 1.5rem;
-    background-color: #E5E5E5;
-    border-radius: $border-radius-value;
-}
-
-.separate {
-    margin: 0.5rem 0 2.5rem;
-}
-
-.filter>* {
-    margin-top: 0.75rem;
-}
-
-.filter-title {
-    margin: 0 0.75rem;
-    font-weight: bold;
-}
-
-.filter-search-bar {
-    display: flex;
-    flex: 1 1 0%;
-    align-items: center;
-    padding: 0.75rem;
-    background-color: white;
     border-radius: 1rem;
-}
+    color: #fff;
+    margin: 0 0.2rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    text-decoration: none;
+  
+     
+    .icon {
+      width: 1rem;
+      height: 1rem;
+      margin-right: 0.4rem;
+      fill: currentColor; 
+    
+      &.tuberculose {
+        fill: #ffffff; 
+      }
+    
+      &.hanseniase {
+        fill: #ffffff; 
+      }
+    }
+  
+    &:hover {
+      filter: brightness($link-hover-brightness);
+    }
+  }
+  
+  .tuberculose {
+    background-color: $link-tuberculose;
+  }
+  
+  .hanseniase {
+    background-color: $link-hanseniase;
+  }
+  
+  .boletim-link:hover {
+    filter: brightness($link-hover-brightness);
+  }
 
-.filter-search-bar>* {
-    margin-left: 0.5rem;
-}
-
-.filter-input-search {
-    display: flex;
-    flex: 1 1 0%;
+  .table-responsive {
     overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    outline: none;
-    border: none;
-    font-size: large;
-}
-
-.table-container {
     border-radius: $border-radius-value;
-    overflow: hidden;
-    /* Isso garante que os cantos arredondados não sejam cortados */
-    position: relative;
+    background-color: #ffffff;
+    padding: 0.5rem;
+
+    .table-wrapper {
+      overflow-x: auto;
+    }
 
     table {
-        background-color: #E5E5E5;
-        overflow-y: auto;
-        /* Aplica o scroll vertical na tabela */
-        max-height: 100%;
-        /* Faz com que a tabela respeite a altura do container */
-        width: 100%;
-        /* Para garantir que ela se expanda corretamente */
+      width: 100%;
+      border-collapse: collapse;
+
+      th,
+      td {
+        padding: 0.5rem;
+        font-size: 0.75rem;
+        text-align: center;
+        border-bottom: 1px solid $table-border-color;
+      }
+
+      th {
+        background-color: $table-header-background;
+        font-weight: bold;
+        color: $header-text-color;
+      }
+
+      td {
+        background-color: $table-row-background;
+        color: $header-text-color;
+      }
     }
+  }
 }
 
-
-.mat-column-distritos {
-    align-items: center;
-    text-align: center;
-}
-
-.unit-element {
-    margin: 0 !important;
-    width: 100%;
-}
-
-.unit-text {
-    padding: 0 1rem;
-}
-
-.mat-column-boletim {
-    text-align: center;
-    margin: 0;
-
-    .tuberculose:hover {
-        background-color: purple;
-        color: white;
-    }
-
-    .hanseniase:hover {
-        background-color: red;
-        color: white;
-    }
-}
-
-.mat-column-status {
-    justify-items: center;
-}
-
-.button-display {
-    display: flex;
-    align-items: center;
-    padding: 0 !important;
-    overflow: hidden;
-    border: none;
-    cursor: pointer;
-}
-
-.status-text {
-    padding: 0.5rem 1.5rem;
-    font-weight: 600;
-}
-
-@mixin status {
-    width: 1.6rem;
-    height: 2.4rem;
-    max-height: 100%;
-}
-
-.open {
-    @include status;
-    background-color: #8FBF88;
-}
-
-.close {
-    @include status;
-    background-color: #FA4F46;
+mat-paginator {
+  margin-top: 10px;
 }

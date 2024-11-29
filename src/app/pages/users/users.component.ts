@@ -9,16 +9,18 @@ import { SidebarComponent } from '../../shared/sidebar/sidebar.component';
 import { MatTableDataSource } from '@angular/material/table';
 import { AuthService } from '../../shared/services/auth.service';
 import { Router } from '@angular/router';
+import { BreadcrumbComponent } from '../../shared/breadcrumb/breadcrumb.component';
 
 @Component({
   selector: 'app-users',
   standalone: true,
-  imports: [CommonModule, MatTableModule, SidebarComponent, HttpClientModule, MatPaginatorModule, MatIconModule],
+  imports: [CommonModule, MatTableModule, SidebarComponent, HttpClientModule, MatPaginatorModule, MatIconModule, BreadcrumbComponent],
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.scss']
 })
 export class UsersComponent implements OnInit, AfterViewInit {
-  columnsTitles: string[] = ['nome', 'email', 'cpf', 'acoes'];
+  // Oculta a coluna CPF visualmente, mas mantém para pesquisa interna
+  columnsTitles: string[] = ['nome', 'email', 'acoes'];
   dataSource = new MatTableDataSource<User>();
   viewModalOpen = false;
   editModalOpen = false;

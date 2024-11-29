@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../../config/config';
 
 export interface WebHookStruct {
     no_unidade_saude: string;
@@ -12,7 +13,7 @@ export interface WebHookStruct {
   providedIn: 'root'
 })
 export class UnidadeWebhookService {
-  private webhookUrl = 'http://192.168.0.21:5678/webhook/unidades';
+  private webhookUrl = `${environment.baseUrl}${environment.endpoints.unidade}`;
 
   constructor(private http: HttpClient) { }
 

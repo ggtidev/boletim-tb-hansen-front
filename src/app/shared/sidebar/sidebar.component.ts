@@ -25,6 +25,6 @@ export class SidebarComponent {
 
   logout() {
     this.authService.logout();
-    window.location.href = 'http://localhost:5678/webhook/keycloak';
+    window.location.href = "https://login.recife.pe.gov.br/auth/realms/recife/protocol/openid-connect/logout?&redirect_uri=http://192.168.18.129:4200/";
   }
 }

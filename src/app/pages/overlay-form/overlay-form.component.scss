@@ -1,0 +1,254 @@
+$color-gray-info: #dddddda6;
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.container-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    overflow: auto;
+
+    &::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 5px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: #888;
+        border-radius: 5px;
+        border: 2px solid #f1f1f1;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+        background-color: #555;
+    }
+}
+
+.mdc-dialog__surface {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    // overflow-y: auto;
+    max-height: 90vh;
+    padding: 0;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+form {
+    width: 100%;
+    max-width: 1200px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    max-height: calc(90vh - 2rem);
+    // overflow-y: auto; 
+    padding: 1rem;
+    background-color: #E5E5E5;
+    border-radius: 0.5rem;
+    // overflow: hidden;
+    box-sizing: border-box;
+
+    &::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: #ddd;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: #aaa;
+        border-radius: 4px;
+        border: 1px solid #ddd;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+        background-color: #888;
+    }
+}
+
+.overlay-header {
+    flex-shrink: 0;
+    margin-bottom: 0.5rem;
+
+    .overlay-header-title {
+        font-size: 1rem;
+        font-weight: bold;
+        margin-bottom: 0.25rem;
+        text-align: center;
+    }
+
+    .overlay-header-data {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 0.5rem;
+        padding: 0.5rem 0.25rem;
+
+        .data {
+            flex: 1 1 30%;
+            display: flex;
+            flex-direction: column;
+
+            span {
+                margin-top: 0.1rem;
+                font-size: 0.85rem;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            &:last-child {
+                text-align: end;
+            }
+        }
+    }
+}
+
+.overlay-main {
+    display: grid;
+    grid-auto-flow: dense;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    // gap: 0rem;
+    align-items: center;
+    row-gap: 0.3rem;
+
+    .overlay-main-info {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: auto;
+
+        .title {
+            font-weight: bold;
+            font-size: 0.6rem;
+            margin-bottom: 0.1rem;
+            text-align: center;
+            white-space: nowrap; /* Evita que o texto quebre a linha */
+            overflow: hidden; /* Oculta o excesso de texto */
+            text-overflow: ellipsis; /* Adiciona "..." no final do texto */
+            width: 100%; /* Garante alinhamento e simetria */
+            display: inline-block; /* Necessário para aplicar as propriedades */
+        }
+
+        select,
+        input[type="text"],
+        input[matDatepicker] {
+            width: 50%;
+            height: 34px;
+            border: none;
+            border-radius: 0.5rem;
+            text-align: center;
+            background-color: $color-gray-info;
+            font-size: 0.6rem;
+            box-sizing: border-box;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    }
+}
+
+.overlay-comments {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1rem 0;
+
+    .comment-field {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: calc(50% - 1rem);
+        max-width: 300px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 0.4rem;
+        font-weight: bold;
+        font-size: 0.6rem;
+        text-align: center;
+    }
+
+    textarea {
+        width: 300px;
+        height: 6rem; 
+        padding: 0.6rem;
+        border: none;
+        border-radius: 0.5rem;
+        font-size: 0.7rem;
+        resize: none;
+        background-color: #FFFFFF;
+        border: 1px solid #ccc;
+    }
+}
+
+.overlay-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1rem; 
+
+    button {
+        padding: 0.4rem 1rem;
+        background-color: #FFFFFF;
+        font-weight: bold;
+        font-size: 0.8rem;
+        border: none;
+        border-radius: 0.5rem;
+        transition: background-color 0.3s;
+
+        &:hover {
+            cursor: pointer;
+            background-color: #f0f0f0;
+        }
+    }
+
+    .close-button {
+        background-color: #6c757d;
+        color: #FFFFFF;
+
+        &:hover {
+            background-color: #5a6268;
+        }
+    }
+}
+
+.tuberculose .overlay-comments textarea {
+    height: 6rem; 
+}
+
+.tuberculose .overlay-buttons {
+    margin-top: 1rem; 
+}
+
+
+.hanseniase .overlay-comments textarea {
+    height: 8rem; 
+}
+
+.hanseniase .overlay-buttons {
+    margin-top: 0.5rem; 
+}

@@ -9,17 +9,18 @@ import { MatTableDataSource } from '@angular/material/table';
 import { AuthService } from '../../shared/services/auth.service';
 import { Router } from '@angular/router';
 import { RouterModule } from '@angular/router';
+import { BreadcrumbComponent } from '../../shared/breadcrumb/breadcrumb.component';
 
 @Component({
   selector: 'app-unidade',
   standalone: true,
-  imports: [CommonModule, MatTableModule, SidebarComponent, HttpClientModule, MatPaginatorModule, RouterModule],
+  imports: [BreadcrumbComponent, CommonModule, MatTableModule, SidebarComponent, HttpClientModule, MatPaginatorModule, RouterModule],
   templateUrl: './unidade.component.html',
   styleUrls: ['./unidade.component.scss']
 })
 export class UnidadeComponent implements OnInit, AfterViewInit {
   isOpen = true;
-  columnsTitles: string[] = ['distritos', 'unidades', 'boletim', 'status'];
+  columnsTitles: string[] = ['distritos', 'cnes', 'unidades', 'boletim'];
   dataSource = new MatTableDataSource<WebHookStruct>();
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;

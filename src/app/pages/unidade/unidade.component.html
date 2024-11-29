@@ -1,64 +1,65 @@
-<main>
+<div class="main-container">
   <app-sidebar></app-sidebar>
-  <div class="main-content">
-    <header>
-      <svg width="11" height="12" viewBox="0 0 11 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path
-          d="M1.74994 9.87498H3.62494V6.74998C3.62494 6.5729 3.68483 6.42446 3.80463 6.30467C3.92442 6.18488 4.07286 6.12498 4.24994 6.12498H6.74994C6.92702 6.12498 7.07546 6.18488 7.19525 6.30467C7.31504 6.42446 7.37494 6.5729 7.37494 6.74998V9.87498H9.24994V4.24998L5.49994 1.43748L1.74994 4.24998V9.87498ZM0.499939 9.87498V4.24998C0.499939 4.05207 0.54421 3.86457 0.632751 3.68748C0.721293 3.5104 0.843689 3.36457 0.999939 3.24998L4.74994 0.437485C4.96869 0.270818 5.21869 0.187485 5.49994 0.187485C5.78119 0.187485 6.03119 0.270818 6.24994 0.437485L9.99994 3.24998C10.1562 3.36457 10.2786 3.5104 10.3671 3.68748C10.4557 3.86457 10.4999 4.05207 10.4999 4.24998V9.87498C10.4999 10.2187 10.3775 10.513 10.1328 10.7578C9.88796 11.0026 9.59369 11.125 9.24994 11.125H6.74994C6.57285 11.125 6.42442 11.0651 6.30463 10.9453C6.18483 10.8255 6.12494 10.6771 6.12494 10.5V7.37498H4.87494V10.5C4.87494 10.6771 4.81504 10.8255 4.69525 10.9453C4.57546 11.0651 4.42702 11.125 4.24994 11.125H1.74994C1.40619 11.125 1.11192 11.0026 0.867126 10.7578C0.622335 10.513 0.499939 10.2187 0.499939 9.87498Z"
-          fill="#1C1B1F" />
-      </svg>
-      <span class="links">Unidade</span>
-    </header>
-    <section class="filter separate">
-      <span class="filter-title">FILTROS</span>
-      <form action="" method="post" class="filter-search-bar">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path
-            d="M5.91667 11.3333C4.40278 11.3333 3.12153 10.809 2.07292 9.76042C1.02431 8.71181 0.5 7.43056 0.5 5.91667C0.5 4.40278 1.02431 3.12153 2.07292 2.07292C3.12153 1.02431 4.40278 0.5 5.91667 0.5C7.43056 0.5 8.71181 1.02431 9.76042 2.07292C10.809 3.12153 11.3333 4.40278 11.3333 5.91667C11.3333 6.52778 11.2361 7.10417 11.0417 7.64583C10.8472 8.1875 10.5833 8.66667 10.25 9.08333L14.9167 13.75C15.0694 13.9028 15.1458 14.0972 15.1458 14.3333C15.1458 14.5694 15.0694 14.7639 14.9167 14.9167C14.7639 15.0694 14.5694 15.1458 14.3333 15.1458C14.0972 15.1458 13.9028 15.0694 13.75 14.9167L9.08333 10.25C8.66667 10.5833 8.1875 10.8472 7.64583 11.0417C7.10417 11.2361 6.52778 11.3333 5.91667 11.3333ZM5.91667 9.66667C6.95833 9.66667 7.84375 9.30208 8.57292 8.57292C9.30208 7.84375 9.66667 6.95833 9.66667 5.91667C9.66667 4.875 9.30208 3.98958 8.57292 3.26042C7.84375 2.53125 6.95833 2.16667 5.91667 2.16667C4.875 2.16667 3.98958 2.53125 3.26042 3.26042C2.53125 3.98958 2.16667 4.875 2.16667 5.91667C2.16667 6.95833 2.53125 7.84375 3.26042 8.57292C3.98958 9.30208 4.875 9.66667 5.91667 9.66667Z"
-            fill="#1C1B1F" />
-        </svg>
-        <input type="text" placeholder="Buscar..." class="filter-input-search" (input)="applyFilter($event)">
-      </form>
-    </section>
-    <div class="table-container">
-      <table mat-table [dataSource]="dataSource">
-        <ng-container matColumnDef="distritos">
-          <th mat-header-cell *matHeaderCellDef>DISTRITOS</th>
-          <td mat-cell *matCellDef="let element">
-            <div>{{element.distrito}}</div>
-          </td>
-        </ng-container>
-        <ng-container matColumnDef="unidades">
-          <th mat-header-cell *matHeaderCellDef>UNIDADES</th>
-          <td mat-cell *matCellDef="let element">
-            <div class="unit-element">
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="..." fill="#1C1B1F" />
-              </svg>
-              <span class="unit-text">{{element.no_unidade_saude}}</span>
-            </div>
-          </td>
-        </ng-container>
-        <ng-container matColumnDef="boletim">
-          <th mat-header-cell *matHeaderCellDef>BOLETIM</th>
-          <td mat-cell *matCellDef="let element">
-            <a [routerLink]="['/boletim/tuberculose', element.distrito, element.no_unidade_saude]" class="tuberculose">Tuberculose</a>
-            <a [routerLink]="['/boletim/hanseniase', element.distrito, element.no_unidade_saude]" class="hanseniase">Hanseníase</a>
-          </td>
-        </ng-container>
-        <ng-container matColumnDef="status">
-          <th mat-header-cell *matHeaderCellDef>STATUS</th>
-          <td mat-cell *matCellDef="let element">
-            <button (click)="setIsOpen()" type="button" class="button-display">
-              <span class="status-text">{{ isOpen ? 'Aberto' : 'Fechado' }}</span>
-              <div [ngClass]="isOpen ? 'open' : 'close'"></div>
-            </button>
-          </td>
-        </ng-container>
-        <tr mat-header-row *matHeaderRowDef="columnsTitles"></tr>
-        <tr mat-row *matRowDef="let row; columns: columnsTitles;"></tr>
-      </table>
-      <mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+
+  <div class="form-content">
+    <app-breadcrumb></app-breadcrumb>
+    <div class="form-header">
+      <h2>Unidades de Saúde</h2>
+    </div>
+    <div class="formulario-container">
+      <section class="filter">
+        <span class="filter-title">FILTROS</span>
+        <form action="" method="post" class="filter-search-bar">
+          <svg class="search-icon" viewBox="0 0 16 16" fill="none">
+            <path
+              d="M5.91667 11.3333C4.40278 11.3333 3.12153 10.809 2.07292 9.76042C1.02431 8.71181 0.5 7.43056 0.5 5.91667C0.5 4.40278 1.02431 3.12153 2.07292 2.07292C3.12153 1.02431 4.40278 0.5 5.91667 0.5C7.43056 0.5 8.71181 1.02431 9.76042 2.07292C10.809 3.12153 11.3333 4.40278 11.3333 5.91667C11.3333 6.52778 11.2361 7.10417 11.0417 7.64583C10.8472 8.1875 10.5833 8.66667 10.25 9.08333L14.9167 13.75C15.0694 13.9028 15.1458 14.0972 15.1458 14.3333C15.1458 14.5694 15.0694 14.7639 14.9167 14.9167C14.7639 15.0694 14.5694 15.1458 14.3333 15.1458C14.0972 15.1458 13.9028 15.0694 13.75 14.9167L9.08333 10.25C8.66667 10.5833 8.1875 10.8472 7.64583 11.0417C7.10417 11.2361 6.52778 11.3333 5.91667 11.3333ZM5.91667 9.66667C6.95833 9.66667 7.84375 9.30208 8.57292 8.57292C9.30208 7.84375 9.66667 6.95833 9.66667 5.91667C9.66667 4.875 9.30208 3.98958 8.57292 3.26042C7.84375 2.53125 6.95833 2.16667 5.91667 2.16667C4.875 2.16667 3.98958 2.53125 3.26042 3.26042C2.53125 3.98958 2.16667 4.875 2.16667 5.91667C2.16667 6.95833 2.53125 7.84375 3.26042 8.57292C3.98958 9.30208 4.875 9.66667 5.91667 9.66667Z"
+              fill="#1C1B1F" />
+          </svg>
+          <input type="text" placeholder="Buscar..." class="filter-input-search" (input)="applyFilter($event)" />
+        </form>
+      </section>
+
+      <div class="table-responsive">
+        <div class="table-wrapper" #tableWrapper>
+          <table mat-table [dataSource]="dataSource">
+            <ng-container matColumnDef="distritos">
+              <th mat-header-cell *matHeaderCellDef>DISTRITOS</th>
+              <td mat-cell *matCellDef="let element">{{ element.distrito }}</td>
+            </ng-container>
+            <ng-container matColumnDef="cnes">
+              <th mat-header-cell *matHeaderCellDef>CNES</th>
+              <td mat-cell *matCellDef="let element">{{ element.cnes }}</td>
+            </ng-container>
+            <ng-container matColumnDef="unidades">
+              <th mat-header-cell *matHeaderCellDef>UNIDADES</th>
+              <td mat-cell *matCellDef="let element">{{ element.no_unidade_saude }}</td>
+            </ng-container>
+            <ng-container matColumnDef="boletim">
+              <th mat-header-cell *matHeaderCellDef>BOLETIM</th>
+              <td mat-cell *matCellDef="let element">
+                <a [routerLink]="['/boletim/tuberculose', element.distrito, element.no_unidade_saude]"
+                   class="boletim-link tuberculose">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon">
+                    <path fill="#ffffff" d="M423.1 30.6c3.6-12.7-3.7-26-16.5-29.7s-26 3.7-29.7 16.5l-4.2 14.7c-9.8-.4-19.9 .5-29.9 2.8c-12.1 2.8-23.7 5.9-34.9 9.4l-5.9-13.7c-5.2-12.2-19.3-17.8-31.5-12.6s-17.8 19.3-12.6 31.5l4.9 11.3c-22 9.4-42 20.1-60.2 31.8L196 82.7c-7.4-11-22.3-14-33.3-6.7s-14 22.3-6.7 33.3l7.8 11.6c-18 15-33.7 30.8-47.3 47.1L103 157.3c-10.4-8.3-25.5-6.6-33.7 3.7s-6.6 25.5 3.7 33.7l15 12c-2.1 3.2-4.1 6.5-6 9.7c-9.4 15.7-17 31-23.2 45.3l-9.9-3.9c-12.3-4.9-26.3 1.1-31.2 13.4s1.1 26.3 13.4 31.2l11.6 4.6c-.3 1.1-.6 2.1-.9 3.1c-3.5 12.5-5.7 23.2-7.1 31.3c-.7 4.1-1.2 7.5-1.6 10.3c-.2 1.4-.3 2.6-.4 3.6l-.1 1.4-.1 .6 0 .3 0 .1c0 0 0 .1 39.2 3.7c0 0 0 0 0 0l-39.2-3.6c-.5 5-.6 10-.4 14.9l-14.7 4.2C4.7 380.6-2.7 393.8 .9 406.6s16.9 20.1 29.7 16.5l13.8-3.9c10.6 20.7 27.6 37.8 48.5 48.5l-3.9 13.7c-3.6 12.7 3.7 26 16.5 29.7s26-3.7 29.7-16.5l4.2-14.7c23.8 1 46.3-5.5 65.1-17.6L215 473c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-10.6-10.6c9.1-14.1 15.1-30.5 17-48.3l.1-.8c.3-1.7 1-5.1 2.3-9.8l.2-.8 12.6 5.4c12.2 5.2 26.3-.4 31.5-12.6s-.4-26.3-12.6-31.5l-11.3-4.8c9.9-14.9 24.9-31.6 48.6-46l2.1 7.5c3.6 12.7 16.9 20.1 29.7 16.5s20.1-16.9 16.5-29.7L371 259.2c6.9-2.2 14.3-4.3 22.2-6.1c12.9-3 24.7-8 35.2-14.8L439 249c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-10.6-10.6c12.2-19 18.6-41.6 17.6-65.1l14.7-4.2c12.7-3.6 20.1-16.9 16.5-29.7s-16.9-20.1-29.7-16.5l-13.7 3.9c-10.8-21.2-28-38-48.5-48.5l3.9-13.8zM92.1 363.3s0 0 0 0L144 368l-51.9-4.7zM112 320a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zM240 184a24 24 0 1 1 0 48 24 24 0 1 1 0-48z"/>
+                  </svg>
+                  Tuberculose
+                </a>
+                <a [routerLink]="['/boletim/hanseniase', element.distrito, element.no_unidade_saude]"
+                   class="boletim-link hanseniase">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="icon">
+                    <path fill="#ffffff" d="M224 224a16 16 0 1 1 0-32 16 16 0 1 1 0 32zm160-16a16 16 0 1 1 0-32 16 16 0 1 1 0 32zm32 64a16 16 0 1 1 0-32 16 16 0 1 1 0 32zm-64 80a16 16 0 1 1 0-32 16 16 0 1 1 0 32zM256 352a16 16 0 1 1 0-32 16 16 0 1 1 0 32zm32-128a16 16 0 1 1 0-32 16 16 0 1 1 0 32zm-96 96a16 16 0 1 1 0-32 16 16 0 1 1 0 32zM48 256a208 208 0 1 1 416 0 208 208 0 1 1 -416 0zm208-176a176 176 0 1 0 0 352 176 176 0 1 0 0-352z"/>
+                  </svg>
+                  Hanseníase
+                </a>
+              </td>
+                           
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="columnsTitles"></tr>
+            <tr mat-row *matRowDef="let row; columns: columnsTitles;"></tr>
+          </table>
+          <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+        </div>
+      </div>
     </div>
   </div>
-</main>
+</div>

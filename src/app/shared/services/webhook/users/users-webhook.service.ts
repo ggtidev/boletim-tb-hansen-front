@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../../config/config';
 
 export interface User {
   id: number;
@@ -20,11 +21,11 @@ export interface Permission {
   providedIn: 'root',
 })
 export class UsersWebhookService {
-  private usersUrl = 'http://192.168.0.21:5678/webhook/users';
+  private usersUrl = `${environment.baseUrl}${environment.endpoints.users}`;
   private permissionsUrl =
-    'http://192.168.0.21:5678/webhook/check-permissions';
+    `${environment.baseUrl}${environment.endpoints.checkpermissions}`;
   private updatePermissionsUrl =
-    'http://192.168.0.21:5678/webhook/u-permissions';
+    `${environment.baseUrl}${environment.endpoints.uppermissions}`;
 
   constructor(private http: HttpClient) {}
 
