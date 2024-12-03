@@ -14,18 +14,18 @@ import { CommonModule } from '@angular/common';
 export class AppComponent {
   title = 'boletim';
   isLoading = false;
-  loadingDelay = 100; // Tempo antes de mostrar o spinner
-  minLoadingTime = 500; // Tempo mínimo que o spinner deve ficar visível
-  private loadingTimeout: any; // Armazena o timeout
-  private loadingVisibleTime: number = 0; // Inicializa o tempo de visibilidade do spinner
+  loadingDelay = 100; 
+  minLoadingTime = 500; 
+  private loadingTimeout: any;
+  private loadingVisibleTime: number = 0; 
 
   constructor(private router: Router) {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationStart) {
         console.log('NavigationStart: Spinner ON');
-        this.loadingVisibleTime = Date.now(); // Marca o tempo de início do spinner
+        this.loadingVisibleTime = Date.now(); 
         this.loadingTimeout = setTimeout(() => {
-          this.isLoading = true; // Exibe o spinner após o delay
+          this.isLoading = true; 
         }, this.loadingDelay);
       } else if (
         event instanceof NavigationEnd ||
@@ -33,16 +33,16 @@ export class AppComponent {
         event instanceof NavigationError
       ) {
         console.log('NavigationEnd: Spinner OFF');
-        const elapsed = Date.now() - this.loadingVisibleTime; // Calcula o tempo decorrido
-        const remainingTime = this.minLoadingTime - elapsed; // Tempo restante para atingir o mínimo
-        clearTimeout(this.loadingTimeout); // Limpa o timeout pendente
+        const elapsed = Date.now() - this.loadingVisibleTime; 
+        const remainingTime = this.minLoadingTime - elapsed;
+        clearTimeout(this.loadingTimeout); 
 
         if (this.isLoading && remainingTime > 0) {
           setTimeout(() => {
-            this.isLoading = false; // Oculta o spinner após o tempo restante
+            this.isLoading = false; 
           }, remainingTime);
         } else {
-          this.isLoading = false; // Oculta o spinner imediatamente
+          this.isLoading = false;
         }
       }
     });
