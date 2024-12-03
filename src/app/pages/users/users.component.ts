@@ -10,6 +10,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { AuthService } from '../../shared/services/auth.service';
 import { Router } from '@angular/router';
 import { BreadcrumbComponent } from '../../shared/breadcrumb/breadcrumb.component';
+import { secureLocalStorage } from '../../shared/services/crypto.service';
+
 
 @Component({
   selector: 'app-users',
@@ -46,7 +48,16 @@ export class UsersComponent implements OnInit, AfterViewInit {
       this.router.navigate(['/login-redirect']);
       return;
     }
-
+    
+    const storedUserId = secureLocalStorage.getItem('user_id');
+    const storedGrupo = secureLocalStorage.getItem('grupo');
+  
+    if (storedUserId && storedGrupo) {
+      console.log(`Usuário autenticado: ID=${storedUserId}, Grupo=${storedGrupo}`);
+    } else {
+      console.error('Os dados de user_id ou grupo não estão disponíveis.');
+    }
+  
     this.usersWebhookService.getUsers().subscribe({
       next: (data: User[]) => {
         this.dataSource.data = data;

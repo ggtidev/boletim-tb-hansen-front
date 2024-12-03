@@ -1,5 +1,5 @@
 export const environment = {
-    baseUrl: 'http://192.168.18.129:5678',
+    baseUrl: 'http://172.20.160.1:5678',
     endpoints: {
       tuberculose: '/webhook/g-tuberculose',
       utuberculose: '/webhook/u-tuberculose',

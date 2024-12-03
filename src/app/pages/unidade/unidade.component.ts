@@ -10,6 +10,7 @@ import { AuthService } from '../../shared/services/auth.service';
 import { Router } from '@angular/router';
 import { RouterModule } from '@angular/router';
 import { BreadcrumbComponent } from '../../shared/breadcrumb/breadcrumb.component';
+import { secureLocalStorage } from '../../shared/services/crypto.service';
 
 @Component({
   selector: 'app-unidade',
@@ -36,7 +37,16 @@ export class UnidadeComponent implements OnInit, AfterViewInit {
       this.router.navigate(['/login-redirect']);
       return;
     }
-
+  
+    const storedUserId = this.authService.getUserId();
+    const storedGrupo = this.authService.getUserGroup();
+  
+    if (storedUserId && storedGrupo) {
+      console.log(`Usuário autenticado: ID=${storedUserId}, Grupo=${storedGrupo}`);
+    } else {
+      console.error('Os dados de user_id ou grupo não estão disponíveis.');
+    }
+  
     this.unidadeWebhookService.get().subscribe({
       next: (data) => {
         this.dataSource.data = data;
@@ -44,6 +54,7 @@ export class UnidadeComponent implements OnInit, AfterViewInit {
       error: (err) => console.error('Erro ao buscar o elemento do webhook', err),
     });
   }
+  
 
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;

@@ -18,13 +18,13 @@ $link-hover-brightness: 1.1;
 }
 
 app-sidebar {
-  width: 200px;
+  width: 15%;
   background-color: $sidebar-background;
 }
 
 .form-content {
   flex-grow: 1;
-  padding: 15px;
+  padding: 1rem;
 }
 
 .form-header {

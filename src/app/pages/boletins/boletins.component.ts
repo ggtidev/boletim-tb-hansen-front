@@ -7,6 +7,8 @@ import { UnidadeWebhookService } from '../../shared/services/webhook/unidade/uni
 import { SidebarComponent } from '../../shared/sidebar/sidebar.component';
 import { CommonModule } from '@angular/common';
 import { BreadcrumbComponent } from '../../shared/breadcrumb/breadcrumb.component';
+import { AuthService } from '../../shared/services/auth.service';
+import { secureLocalStorage } from '../../shared/services/crypto.service';
 
 @Component({
   selector: 'app-boletins',
@@ -30,18 +32,33 @@ export class BoletinsComponent implements OnInit {
     private route: ActivatedRoute,
     private boletinsWebhookService: BoletinsWebhookService,
     private unidadeWebhookService: UnidadeWebhookService,
+    private authService: AuthService,
     private router: Router
   ) { }
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
+    if (!this.authService.isAuthenticated()) {
+      this.router.navigate(['/login-redirect']);
+      return;
+    }
+
+    const storedUserId = secureLocalStorage.getItem('user_id');
+    const storedGrupo = secureLocalStorage.getItem('grupo');
+  
+    if (storedUserId && storedGrupo) {
+      console.log(`Usuário autenticado: ID=${storedUserId}, Grupo=${storedGrupo}`);
+    } else {
+      console.error('Os dados de user_id ou grupo não estão disponíveis.');
+    }
+  
+    this.route.params.subscribe((params) => {
       this.tipo = params['tipo']?.toLowerCase() === 'tuberculose' ? 'tuberculose' : 'hanseniase';
       this.distrito = params['distrito'];
       this.unidade = params['unidade'];
-
+  
       this.unidadeWebhookService.get().subscribe({
         next: (unidades) => {
-          const unidadeSelecionada = unidades.find(u => u.no_unidade_saude === this.unidade);
+          const unidadeSelecionada = unidades.find((u) => u.no_unidade_saude === this.unidade);
           if (unidadeSelecionada) {
             this.cnes = unidadeSelecionada.cnes;
             this.obterDadosCiclo();
@@ -54,6 +71,10 @@ export class BoletinsComponent implements OnInit {
     });
   }
 
+  formatDateToCycle(date: string): string {
+    const formattedDate = new Date(date).toLocaleDateString('pt-BR', { month: 'long', year: 'numeric' });
+    return formattedDate.charAt(0).toUpperCase() + formattedDate.slice(1);
+  }
 
   irParaFormulario(ciclo: string): void {
     this.router.navigate(['/formulario'], {
@@ -61,7 +82,7 @@ export class BoletinsComponent implements OnInit {
         tipo: this.tipo,
         distrito: this.distrito,
         unidade: this.unidade,
-        ciclo: this.formatDateToCycle(ciclo),
+        ciclo: ciclo,
       }
     });
   }
@@ -82,15 +103,15 @@ export class BoletinsComponent implements OnInit {
   }
 
   obterDadosCiclo(): void {
-  if (this.cnes && this.tipo) {
-    this.boletinsWebhookService.getCiclo(this.cnes, this.tipo).subscribe({
-      next: (data) => {
-        this.dataSource.data = this.reorganizarBoletins(data);
-      },
-      error: (err) => console.error('Erro ao buscar dados do ciclo', err),
-    });
+    if (this.cnes && this.tipo) {
+      this.boletinsWebhookService.getCiclo(this.cnes, this.tipo).subscribe({
+        next: (data) => {
+          this.dataSource.data = this.reorganizarBoletins(data);
+        },
+        error: (err) => console.error('Erro ao buscar dados do ciclo', err),
+      });
+    }
   }
-}
 
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
@@ -100,9 +121,4 @@ export class BoletinsComponent implements OnInit {
     const filterValue = (event.target as HTMLInputElement).value.toLowerCase();
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-  formatDateToCycle(date: string): string {
-    const formattedDate = new Date(date).toLocaleDateString('pt-BR', { month: 'long', year: 'numeric' });
-    return formattedDate.charAt(0).toUpperCase() + formattedDate.slice(1);
-  }
-
 }

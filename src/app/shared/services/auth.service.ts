@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { secureLocalStorage } from '../services/crypto.service';
 
 @Injectable({
   providedIn: 'root'
@@ -26,9 +27,10 @@ export class AuthService {
     }
 
     if (this.isLocalStorageAvailable()) {
-      return localStorage.getItem('isAuthenticated') === 'true';
+      const authStatus = secureLocalStorage.getItem('isAuthenticated');
+      return authStatus === true;
     }
-    
+
     return false;
   }
 
@@ -36,7 +38,7 @@ export class AuthService {
     this.isAuthenticatedUser = authenticated;
 
     if (this.isLocalStorageAvailable()) {
-      localStorage.setItem('isAuthenticated', authenticated ? 'true' : 'false');
+      secureLocalStorage.setItem('isAuthenticated', authenticated);
     }
   }
 
@@ -44,14 +46,37 @@ export class AuthService {
     this.isAuthenticatedUser = false;
 
     if (this.isLocalStorageAvailable()) {
-      localStorage.removeItem('isAuthenticated');
+      secureLocalStorage.removeItem('isAuthenticated');
+      secureLocalStorage.removeItem('user_id');
+      secureLocalStorage.removeItem('grupo');
     }
   }
 
   private checkLocalAuthentication(): boolean {
     if (this.isLocalStorageAvailable()) {
-      return localStorage.getItem('isAuthenticated') === 'true';
+      return secureLocalStorage.getItem('isAuthenticated') === true;
     }
     return false;
+  }
+
+  setUserData(userId: string, grupo: string): void {
+    if (this.isLocalStorageAvailable()) {
+      secureLocalStorage.setItem('user_id', userId);
+      secureLocalStorage.setItem('grupo', grupo);
+    }
+  }
+
+  getUserId(): string | null {
+    if (this.isLocalStorageAvailable()) {
+      return secureLocalStorage.getItem('user_id');
+    }
+    return null;
+  }
+
+  getUserGroup(): string | null {
+    if (this.isLocalStorageAvailable()) {
+      return secureLocalStorage.getItem('grupo');
+    }
+    return null;
   }
 }

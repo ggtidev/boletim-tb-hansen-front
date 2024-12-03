@@ -20,6 +20,7 @@ import { environment } from '../../shared/config/config';
 })
 export class OverlayFormComponent implements OnInit {
   @Output() dadosSalvos = new EventEmitter<void>();
+  canEditObsDistrito: boolean = false;
 
   displayedGridColumns: string[] = [];
   tipo: string = '';
@@ -38,6 +39,7 @@ export class OverlayFormComponent implements OnInit {
     'st_baciloscopia_6_mes',
     'st_bacil_apos_6_mes',
     'nu_contato_examinado',
+    'nu_contato_registrado',
     'tp_antirretroviral_trat',
     'tp_molecular',
     'tp_situacao_encerramento',
@@ -78,16 +80,16 @@ export class OverlayFormComponent implements OnInit {
     st_baciloscopia_5_mes: 'BAC 5º MÊS',
     st_baciloscopia_6_mes: 'BAC 6º MÊS',
     st_bacil_apos_6_mes: 'BAC APÓS 6º MÊS',
-    tp_antirretroviral_trat: 'TRATAMENTO ANTIRRETROVIRAL',
-    tp_molecular: 'MOLECULAR',
+    tp_antirretroviral_trat: 'TARV',
+    tp_molecular: 'TRM',
     tp_situacao_encerramento: 'SITUAÇÃO DE ENCERRAMENTO',
     dt_encerramento: 'DATA DE ENCERRAMENTO',
-    tp_cultura_escarro: 'CULTURA DE ESCARRO',
+    tp_cultura_escarro: 'CULTURA',
     tp_sensibilidade: 'SENSIBILIDADE',
     tp_hiv: 'HIV',
     tp_histopatologia: 'HISTOPATOLOGIA',
     ds_observacao: 'OBSERVAÇÃO',
-    tp_tratamento_acompanhamento: 'TRATA. ACOMPANHAMENTO',
+    tp_tratamento_acompanhamento: 'TDO',
     co_municipio_transf: 'MUNICÍPIO DE TRANSFERÊNCIA',
     co_municipio_residencia_atual: 'MUNICÍPIO DE RESIDÊNCIA ATUAL',
     co_distrito_residencia_atual: 'DISTRITO DE RESIDÊNCIA ATUAL',
@@ -99,6 +101,9 @@ export class OverlayFormComponent implements OnInit {
     dt_mudanca_esquema: 'DATA DE MUDANÇA DE ESQUEMA',
     tp_alta: 'TIPO DE SAÍDA',
     dt_alta: 'DATA DE ALTA',
+    nu_contato_examinado: 'Nº CONT. EXAMINADO',
+    nu_contato_registrado: 'TOTAL CONT IDENTIF',
+    nu_contato: 'TOTAL CONT IDENTIF'
   };
 
   constructor(
@@ -108,6 +113,8 @@ export class OverlayFormComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    const userGroup = localStorage.getItem('grupo') || '';
+    this.canEditObsDistrito = userGroup === 'Admin' || userGroup === 'Distrito';
     this.tipo = this.data?.tipo || '-';
     this.data.obs_distrito = this.data.obs_distrito || '';
     this.data.obs_unidade = this.data.obs_unidade || '';
@@ -124,6 +131,8 @@ export class OverlayFormComponent implements OnInit {
         'tp_classific_operacao_atual',
         'tp_incapacidade_fisica_cura',
         'tp_esquema_terapeutico_atual',
+        'nu_contato_examinado',
+        'nu_contato_registrado',
         'dt_mudanca_esquema',
         'tp_alta',
         'dt_alta',
@@ -149,7 +158,8 @@ export class OverlayFormComponent implements OnInit {
         // 'ds_observacao',
         'tp_tratamento_acompanhamento',
         'co_municipio_transf',
-        // 'nu_contato_examinado',
+        'nu_contato_examinado',
+        'nu_contato'
       ];
     }
   }
@@ -164,6 +174,31 @@ export class OverlayFormComponent implements OnInit {
     ];
     return textFields.includes(columnName);
   }
+
+  validateNumberInput(event: KeyboardEvent): void {
+    const allowedKeys = ['Backspace', 'Tab', 'ArrowLeft', 'ArrowRight', 'Delete'];
+    if (
+      !allowedKeys.includes(event.key) &&
+      (isNaN(Number(event.key)) || event.key === ' ' || event.key === '-')
+    ) {
+      event.preventDefault();
+    }
+  }  
+  
+  preventNegativeValue(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (Number(input.value) < 0) {
+      input.value = '0';
+    }
+  }
+
+  validatePasteInput(event: ClipboardEvent): void {
+    const clipboardData = event.clipboardData?.getData('text') || '';
+    if (!/^\d+$/.test(clipboardData)) {
+      event.preventDefault();
+    }
+  }
+  
 
   closeDialog(): void {
     this.dialogRef.close();
@@ -249,6 +284,9 @@ export class OverlayFormComponent implements OnInit {
       'co_distrito_residencia_atual',
       'no_bairro_residencia_atual',
       'dt_ultimo_comparecimento',
+      'nu_contato_examinado',
+      'nu_contato_registrado',
+      'nu_contato',
     ];
 
     if (textOrDateFields.includes(column)) {
