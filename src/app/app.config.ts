@@ -14,7 +14,6 @@ import { importProvidersFrom } from '@angular/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 
-// Registra o locale pt-BR
 registerLocaleData(localePt, 'pt-BR');
 
 export const AppConfig: ApplicationConfig = {

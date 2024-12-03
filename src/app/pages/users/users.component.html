@@ -17,25 +17,21 @@
 
     <div class="table-container">
       <table mat-table [dataSource]="dataSource">
-        <!-- Nome Column -->
         <ng-container matColumnDef="nome">
           <th mat-header-cell *matHeaderCellDef>NOME</th>
           <td mat-cell *matCellDef="let element">{{ element.nome }}</td>
         </ng-container>
 
-        <!-- Email Column -->
         <ng-container matColumnDef="email">
           <th mat-header-cell *matHeaderCellDef>EMAIL</th>
           <td mat-cell *matCellDef="let element">{{ element.email }}</td>
         </ng-container>
 
-        <!-- CPF Column (Hidden) -->
         <ng-container matColumnDef="cpf">
           <th mat-header-cell *matHeaderCellDef></th>
           <td mat-cell *matCellDef="let element" class="hidden-column">{{ element.cpf }}</td>
         </ng-container>
 
-        <!-- Actions Column -->
         <ng-container matColumnDef="acoes">
           <th mat-header-cell *matHeaderCellDef>AÇÕES</th>
           <td mat-cell *matCellDef="let element">
@@ -56,7 +52,6 @@
     </div>
   </div>
 
-  <!-- View Modal -->
   <div *ngIf="viewModalOpen" class="modal">
     <div class="modal-content">
       <h3>Permissões de {{ selectedUser?.nome }}</h3>
@@ -67,7 +62,6 @@
     </div>
   </div>
 
-  <!-- Edit Modal -->
   <div *ngIf="editModalOpen" class="modal">
     <div class="modal-content">
       <h3>Editando Permissões de {{ selectedUser?.nome }}</h3>

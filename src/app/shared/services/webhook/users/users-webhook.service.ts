@@ -38,14 +38,12 @@ export class UsersWebhookService {
     return this.http.get<Permission[]>(this.permissionsUrl, { params });
   }
 
-  updateUserPermissions(
-    userId: number,
-    permissions: number[]
-  ): Observable<void> {
+  updateUserPermissions(userId: number, permissions: number[]): Observable<void> {
     const body = {
       user_id: userId,
-      grupo_id: permissions,
+      grupo_ids: permissions, //byebyecors fdp
     };
-    return this.http.post<void>(this.updatePermissionsUrl, body);
+    return this.http.put<void>(this.updatePermissionsUrl, body);
   }
+  
 }

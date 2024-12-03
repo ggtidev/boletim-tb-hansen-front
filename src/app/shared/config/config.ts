@@ -13,4 +13,3 @@ export const environment = {
       checkpermissions: '/webhook/check-permissions',
     },
   };
-  
