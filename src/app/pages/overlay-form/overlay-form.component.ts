@@ -94,7 +94,7 @@ export class OverlayFormComponent implements OnInit {
     co_municipio_residencia_atual: 'MUNICÍPIO DE RESIDÊNCIA ATUAL',
     co_distrito_residencia_atual: 'DISTRITO DE RESIDÊNCIA ATUAL',
     no_bairro_residencia_atual: 'BAIRRO DE RESIDÊNCIA ATUAL',
-    dt_ultimo_comparecimento: 'DATA DO ÚLTIMO COMPARECIMENTO',
+    dt_ultimo_comparecimento: 'ÚLTIMO COMPARECIMENTO',
     tp_classific_operacao_atual: 'CLASSIFICAÇÃO OPERACIONAL ATUAL',
     tp_incapacidade_fisica_cura: 'AVALIAÇÃO DE INCAPACIDADE FÍSICA NO MOMENTO DA CURA',
     tp_esquema_terapeutico_atual: 'ESQUEMA TERAPÊUTICO ATUAL',
